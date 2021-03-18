@@ -8,7 +8,7 @@ public class PopulationManager : MonoBehaviour {
     public static int populationCount;
     public int populationSize = 50;
     public GameObject prefab;
-    public float trialTime = 5.0f;
+    public float trialTime = 20.0f;
     public List<GameObject> population = new List<GameObject> ();
     public int mutationPercentage = 1;
 

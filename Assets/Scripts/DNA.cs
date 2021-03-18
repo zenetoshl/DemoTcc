@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DNA {
-    List<int> genes = new List<int> ();
+    public List<int> genes = new List<int> ();
     int dnaLength = 0;
     int maxValues = 0;
     public float r = 1;
