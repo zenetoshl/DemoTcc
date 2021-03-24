@@ -9,6 +9,8 @@ public class DNA {
     public float r = 1;
     public float g = 0;
     public float b = 0;
+    public static int breedOpt = 3;
+    public static int mutationOpt = 3;
 
     public DNA (int length, int mValues) {
         dnaLength = length;
@@ -34,16 +36,77 @@ public class DNA {
         return genes[pos];
     }
 
-    public void Combine (DNA dad, DNA mother) {
-        for (int i = 0; i < dnaLength; i++) {
-            genes[i] = (i < dnaLength / 2) ? dad.genes[i] : mother.genes[i];
+    public void Combine (DNA parent1, DNA parent2) {
+        switch (breedOpt)
+        {
+            case 1:
+                GenericBreed(parent1, parent2);
+                break;
+            case 2:
+                AlternatedBreed(parent1, parent2);
+                break;
+            case 3:
+                RandomBreed(parent1, parent2);
+                break;
+            default:
+                GenericBreed(parent1, parent2);
+                break;
         }
-        r = (dad.r + mother.r) % 1;
-        g = (dad.g + mother.g) % 1;
-        b = (dad.b + mother.b) % 1;
+        r = parent2.r;
+        g = parent1.g;
+        b = parent2.b;
     }
 
     public void Mutate () {
-        genes[Random.Range (0, dnaLength)] = Random.Range (0, maxValues);
+        switch (mutationOpt)
+        {
+            case 1:
+                FixedSizeMutation(2);
+                break;
+            case 2:
+                RandomNumberMutation();
+                break;
+            case 3:
+                FullMutation();
+                break;
+            default:
+                FixedSizeMutation(2);
+                break;
+        }
+    }
+
+    public void FullMutation(){
+        SetRandom();
+    }
+
+    public void RandomNumberMutation(){
+        int mutationSize = Random.Range (0, dnaLength);
+        for (int i = 0; i < mutationSize; i++){
+            genes[Random.Range (0, dnaLength)] = Random.Range (0, maxValues);
+        }
+    }
+
+    public void FixedSizeMutation(int mutationSize){
+        for (int i = 0; i < mutationSize; i++){
+            genes[Random.Range (0, dnaLength)] = Random.Range (0, maxValues);
+        }
+    }
+
+    public void RandomBreed(DNA parent1, DNA parent2){
+        for (int i = 0; i < dnaLength; i++) {
+            genes[i] = (Random.Range (0, 100) <= 50) ? parent1.genes[i] : parent2.genes[i];
+        }
+    }
+
+    public void AlternatedBreed(DNA parent1, DNA parent2){
+        for (int i = 0; i < dnaLength; i++) {
+            genes[i] = (i % 2 == 0) ? parent1.genes[i] : parent2.genes[i];
+        }
+    }
+
+    public void GenericBreed(DNA parent1, DNA parent2){
+        for (int i = 0; i < dnaLength; i++) {
+            genes[i] = (i < dnaLength / 2) ? parent1.genes[i] : parent2.genes[i];
+        }
     }
 }
