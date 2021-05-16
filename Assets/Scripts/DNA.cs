@@ -21,6 +21,18 @@ public class DNA {
         SetRandom ();
     }
 
+    public DNA (DNA original){
+        dnaLength = original.dnaLength;
+        maxValues = original.maxValues;
+        r = original.r;
+        g = original.g;
+        b = original.b;
+        foreach (int item in original.genes)
+        {
+            genes.Add (item);
+        }
+    }
+
     private void SetRandom () {
         genes.Clear ();
         for (int i = 0; i < dnaLength; i++) {

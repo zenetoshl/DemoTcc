@@ -39,7 +39,7 @@ public class Brain : MonoBehaviour {
         //3 - esquerda
         initPos = transform.position;
         dnaLength = 100;
-        dna = Elitedna;
+        dna = new DNA(Elitedna);
         timeAlive = 0.0f;
         i = 1;
         distanceWalked = 0.0f;
@@ -83,10 +83,10 @@ public class Brain : MonoBehaviour {
                 turn = 270;
                 break;
         }
-        i++;
-        if(i >= dnaLength - 1){
+        if(i >= dnaLength - 2){
             i = 0;
         }
+        i++;
         this.transform.Rotate (0, turn, 0);
     }
 
@@ -124,6 +124,6 @@ public class Brain : MonoBehaviour {
     }
 
     public float CalculateFitness3(){
-        return ((distanceWalked / timeAlive) + (winner ? 3 : 0));
+        return ((distanceWalked / timeAlive) + (winner ? 8 : 0));
     }
 }

@@ -32,7 +32,8 @@ public class PopulationManager : MonoBehaviour {
     public static int populationSize = 50;
     public static int elite = 2;
     public static int mutationPercentage = 1;
-    public static float trialTime = 20.0f;
+    public static float trialTime = 10.0f;
+    public static int selectionOpt = 1;
     public GameObject prefab;
     public List<GameObject> population = new List<GameObject> ();
 
@@ -89,15 +90,11 @@ public class PopulationManager : MonoBehaviour {
     private void BreedNewPopulation () {
         List<GameObject> sortedList = population.OrderBy (o => -o.GetComponent<Brain>().CalculateFitness()).ToList ();
         population.Clear ();
-        for (int i = 0; i < (int) (sortedList.Count / 2.0f) -(elite / 2); i++) {
-            int j = (i + 1) % sortedList.Count;
-            population.Add (Breed (sortedList[i], sortedList[j]));
-            population.Add (Breed (sortedList[j], sortedList[i]));
+        if(selectionOpt == 1){
+            SelectionByFittest(sortedList);
+        } else {
+            RandomSelection(sortedList);
         }
-        for (int i = 0; i < elite; i++){
-            population.Add(BreedElite(sortedList[i]));
-        }
-        populationCount = population.Count;
 
         foreach (GameObject obj in sortedList) {
             Destroy (obj);
@@ -106,12 +103,48 @@ public class PopulationManager : MonoBehaviour {
         currentGeneration++;
     }
 
-    private void Update () {
+    private void RandomSelection(List<GameObject> sorted){
+        int i = 0;
+        while(population.Count < populationSize){
+            if(i < elite){
+                population.Add (Breed (sorted[i], sorted[i]));
+            }
+            else {
+                population.Add (Breed (sorted[Random.Range (0, sorted.Count - 1)], sorted[Random.Range (0, sorted.Count - 1)]));
+            }
+            i++;
+        }
+        populationCount = population.Count;
+    }
+
+    private void SelectionByFittest(List<GameObject> sorted){
+        int i = 0;
+        while(population.Count < populationSize){
+            if(i < elite){
+                population.Add (Breed (sorted[i], sorted[i]));
+            }
+            else {
+                population.Add (Breed (sorted[i - elite], sorted[(i - elite + 1) % sorted.Count]));
+            }
+            i++;
+        }
+        populationCount = population.Count;
+    }
+
+    private void FixedUpdate () {
         if(started){
             elapsed += Time.deltaTime;
             if (elapsed >= trialTime) {
                 BreedNewPopulation ();
                 elapsed = 0.0f;
+                Debug.Log("population size: " + populationSize);
+                Debug.Log("elite: " + elite);
+                Debug.Log("breed opt: " + DNA.breedOpt);
+                Debug.Log("fitness Opt: " +  Brain.fitnessOpt);
+                Debug.Log("Mutation opt: " + populationSize);
+                Debug.Log("selection Opt: " + selectionOpt);
+                Debug.Log("mutation percent: " + mutationPercentage);
+                Debug.Log("trial time: " + trialTime);
             }
         }
     }
@@ -135,6 +168,13 @@ public class PopulationManager : MonoBehaviour {
             opt = 1;
         }
         DNA.mutationOpt = opt;
+    }
+
+    public void SetSelectionOpt(int opt){
+        if(opt > 2 || opt < 1){
+            opt = 1;
+        }
+        selectionOpt = opt;
     }
 
     public void SetMutation(int opt){
