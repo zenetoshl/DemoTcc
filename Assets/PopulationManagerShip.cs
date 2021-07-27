@@ -29,13 +29,18 @@ public class PopulationManagerShip : MonoBehaviour
     }
     public bool started = false;
     public static float elapsed = 0.0f;
-    public static int populationCount;
+    public static int populationCount {
+        get => populationAlive - populationDead;
+    }
+    public static int populationDead = 0;
+    public static int populationAlive = 0;
     public static int populationSize = 50;
     public static int elite = 10;
     public static int mutationPercentage = 1;
     public static float trialTime = 15.0f;
     public static int selectionOpt = 1;
     public static int aboveZero = 0;
+    public static float spawnTime = .05f;
     public GameObject prefab;
     public List<GameObject> population = new List<GameObject> ();
 
@@ -65,6 +70,8 @@ public class PopulationManagerShip : MonoBehaviour
     public void StartGame () {
         Vector3 startPos;
         GameObject created;
+        populationDead = 0;
+        populationAlive = 0;
         for (int i = 0; i < populationSize; i++) {
             startPos = new Vector3 (this.transform.position.x, this.transform.position.y, this.transform.position.z);
             created = Instantiate (prefab, startPos, this.transform.rotation);
@@ -72,8 +79,9 @@ public class PopulationManagerShip : MonoBehaviour
             brain.Init ();
             population.Add (created);
         }
+        StartCoroutine("SpawnNewGeneration");  
+        Debug.Log(population.Count);
         started = true;
-        populationCount = population.Count;
     }
 
     private GameObject Breed (GameObject father, GameObject mother) {
@@ -97,12 +105,10 @@ public class PopulationManagerShip : MonoBehaviour
     private void BreedNewPopulation () {
         Debug.Log("acima de 0 pontos:" + aboveZero);
         aboveZero = 0;
+        populationDead = 0;
+        populationAlive = 0;
         List<GameObject> sortedList = population.OrderBy (o => -o.GetComponent<ShipController>().fitness).ToList ();
         population.Clear ();
-        foreach (GameObject o in sortedList)
-        {
-            Debug.Log("fitness aqui: " + o.GetComponent<ShipController>().fitness);
-        }
         if(selectionOpt == 1){
             SelectionByFittest(sortedList);
         } else {
@@ -112,8 +118,17 @@ public class PopulationManagerShip : MonoBehaviour
         foreach (GameObject obj in sortedList) {
             Destroy (obj);
         }
-
+        StartCoroutine("SpawnNewGeneration");
         currentGeneration++;
+    }
+
+    IEnumerator SpawnNewGeneration(){
+        foreach (GameObject obj in population){
+            obj.GetComponent<ShipController>().ToggleBrain(true);
+            populationAlive++;
+            yield return new WaitForSeconds(spawnTime);
+        }
+        yield return null;
     }
 
     private void RandomSelection(List<GameObject> sorted){
@@ -127,7 +142,6 @@ public class PopulationManagerShip : MonoBehaviour
             }
             i++;
         }
-        populationCount = population.Count;
     }
 
     private void SelectionByFittest(List<GameObject> sorted){
@@ -141,13 +155,12 @@ public class PopulationManagerShip : MonoBehaviour
             }
             i++;
         }
-        populationCount = population.Count;
     }
 
     private void FixedUpdate () {
         if(started){
             elapsed += Time.deltaTime;
-            if (populationCount <= 0) {
+            if (populationDead >= populationSize) {
                 BreedNewPopulation ();
                 elapsed = 0.0f;
                 Debug.Log("population size: " + populationSize);

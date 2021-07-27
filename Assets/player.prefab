@@ -105,6 +105,7 @@ MonoBehaviour:
   maxSpeed: 30
   bornTime: 0
   goalsId: 
+  fitness: 0
   animator: {fileID: 0}
 --- !u!50 &9108539589332942074
 Rigidbody2D:

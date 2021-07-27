@@ -6,6 +6,7 @@ public class DinoBrain : MonoBehaviour
 {
     public static int dnaLength = 6;
     public float timeAlive = 0.0f;
+    public float bornTime = 0.0f;
     public float distanceWalked = 0.0f;
     public static int fitnessOpt = 3;
     public DNA dna;
@@ -21,44 +22,49 @@ public class DinoBrain : MonoBehaviour
         //DNA Sequence
         //0 - frente
         //1 - pulo
+        ToggleBrain(false);
         initPos = transform.position;
         dna = new DNA (dnaLength, 2);
         timeAlive = 0.0f;
         i = 0;
         distanceWalked = 0.0f;
-        alive = true;
-        Debug.Log(initPos);
     }
 
     public void Init (DNA Elitedna) {
         //DNA Sequence
         //0 - frente
         //1 - pulo
+        ToggleBrain(false);
         initPos = transform.position;
         dnaLength = 100;
         dna = new DNA(Elitedna);
         timeAlive = 0.0f;
         i = 0;
         distanceWalked = 0.0f;
-        alive = true;
-        Debug.Log(initPos);
+    }
+
+    public void ToggleBrain(bool b){
+        alive = b;
+        this.transform.GetComponent<SpriteRenderer>().enabled = b;
+        if(b){
+            bornTime = PopulationManagerDino.elapsed;
+        }
+    }
+    private void Die(){
+        alive = false;
+        PopulationManager.populationDead++;
     }
     
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag == "dead") {
-            alive = false;
-            PopulationManagerDino.populationCount--;
+            Die();
             winner = false;
-            Debug.Log("dead");
             return;
         } else
         if(other.gameObject.tag == "win") {
-            alive = false;
-            PopulationManagerDino.populationCount--;
+            Die();
             winner = true;
-            Debug.Log("win");
-
             return;
         } if(other.gameObject.tag != "decision") return;
         Debug.Log(other.gameObject.tag);

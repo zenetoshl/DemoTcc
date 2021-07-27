@@ -36,7 +36,7 @@ public class ShipController : MonoBehaviour
     }
 
     public void Init () {
-        bornTime = PopulationManagerDino.elapsed;
+        ToggleBrain(false);
         goalsId = new List<int>();
         initPos = transform.position;
         dna = new DNA (dnaLength, turnAngleLimit, maxSpeed, maxFrameLimit);
@@ -44,34 +44,39 @@ public class ShipController : MonoBehaviour
         frame = 0;
         i = 0;
         distanceWalked = 0.0f;
-        alive = true;
     }
 
     public void Init (DNA Elitedna, float fitness) {
         //DNA Sequence
         //0 - frente
         //1 - pulo
+        ToggleBrain(false);
         Debug.Log("init elite: " + fitness);
         initPos = transform.position;
         dna = new DNA(Elitedna);
         goalsId = new List<int>();
-        bornTime = PopulationManagerShip.elapsed;
         timeAlive = 0.0f;
         frame = 0;
         i = 0;
         distanceWalked = 0.0f;
-        alive = true;
     }
 
     private void Die(){
         alive = false;
         fitness = CalculateFitness1();
-        PopulationManagerShip.populationCount--;
+        PopulationManagerShip.populationDead++;
         if(fitness > 0){
             PopulationManagerShip.aboveZero++;
         }
     }
-    
+
+    public void ToggleBrain(bool b){
+        alive = b;
+        this.transform.GetComponent<SpriteRenderer>().enabled = b;
+        if(b){
+            bornTime = PopulationManagerShip.elapsed;
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (!alive) return;

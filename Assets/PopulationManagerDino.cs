@@ -28,12 +28,18 @@ public class PopulationManagerDino : MonoBehaviour {
     }
     public bool started = false;
     public static float elapsed = 0.0f;
-    public static int populationCount;
+    public static int populationCount {
+        get => populationAlive - populationDead;
+    }
+    public static int populationDead = 0;
+    public static int populationAlive = 0;
     public static int populationSize = 50;
     public static int elite = 5;
     public static int mutationPercentage = 1;
     public static float trialTime = 15.0f;
     public static int selectionOpt = 1;
+    public static float spawnTime = .15f;
+
     public GameObject prefab;
     public List<GameObject> population = new List<GameObject> ();
 
@@ -63,6 +69,8 @@ public class PopulationManagerDino : MonoBehaviour {
     public void StartGame () {
         Vector3 startPos;
         GameObject created;
+        populationDead = 0;
+        populationAlive = 0;
         for (int i = 0; i < populationSize; i++) {
             startPos = new Vector3 (this.transform.position.x, this.transform.position.y, this.transform.position.z);
             created = Instantiate (prefab, startPos, this.transform.rotation);
@@ -71,7 +79,7 @@ public class PopulationManagerDino : MonoBehaviour {
             population.Add (created);
         }
         started = true;
-        populationCount = population.Count;
+        StartCoroutine("SpawnNewGeneration"); 
     }
 
     private GameObject Breed (GameObject father, GameObject mother) {
@@ -93,6 +101,8 @@ public class PopulationManagerDino : MonoBehaviour {
     }
 
     private void BreedNewPopulation () {
+        populationDead = 0;
+        populationAlive = 0;
         List<GameObject> sortedList = population.OrderBy (o => -o.GetComponent<DinoBrain>().CalculateFitness()).ToList ();
         population.Clear ();
         if(selectionOpt == 1){
@@ -104,8 +114,17 @@ public class PopulationManagerDino : MonoBehaviour {
         foreach (GameObject obj in sortedList) {
             Destroy (obj);
         }
-
+        StartCoroutine("SpawnNewGeneration"); 
         currentGeneration++;
+    }
+
+    IEnumerator SpawnNewGeneration(){
+        foreach (GameObject obj in population){
+            obj.GetComponent<DinoBrain>().ToggleBrain(true);
+            populationAlive++;
+            yield return new WaitForSeconds(spawnTime);
+        }
+        yield return null;
     }
 
     private void RandomSelection(List<GameObject> sorted){
@@ -119,7 +138,6 @@ public class PopulationManagerDino : MonoBehaviour {
             }
             i++;
         }
-        populationCount = population.Count;
     }
 
     private void SelectionByFittest(List<GameObject> sorted){
@@ -133,13 +151,12 @@ public class PopulationManagerDino : MonoBehaviour {
             }
             i++;
         }
-        populationCount = population.Count;
     }
 
     private void FixedUpdate () {
         if(started){
             elapsed += Time.deltaTime;
-            if (elapsed >= trialTime) {
+            if (populationDead >= populationSize) {
                 BreedNewPopulation ();
                 elapsed = 0.0f;
                 Debug.Log("population size: " + populationSize);

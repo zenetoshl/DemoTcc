@@ -5,6 +5,7 @@ using UnityEngine;
 public class Brain : MonoBehaviour {
     public static int dnaLength = 6;
     public float timeAlive = 0.0f;
+    public float bornTime = 0.0f;
     public float distanceWalked = 0.0f;
     public static int fitnessOpt = 3;
     public DNA dna;
@@ -21,13 +22,13 @@ public class Brain : MonoBehaviour {
         //1 - direita
         //2 - tras
         //3 - esquerda
+        ToggleBrain(false);
         initPos = transform.position;
         dna = new DNA (dnaLength, 4);
         timeAlive = 0.0f;
         i = 1;
         distanceWalked = 0.0f;
         SetColors();
-        alive = true;
         Debug.Log(initPos);
     }
 
@@ -37,6 +38,7 @@ public class Brain : MonoBehaviour {
         //1 - direita
         //2 - tras
         //3 - esquerda
+        ToggleBrain(false);
         initPos = transform.position;
         dnaLength = 100;
         dna = new DNA(Elitedna);
@@ -44,8 +46,22 @@ public class Brain : MonoBehaviour {
         i = 1;
         distanceWalked = 0.0f;
         SetColors();
-        alive = true;
         Debug.Log(initPos);
+    }
+
+    public void ToggleBrain(bool b){
+        alive = b;
+        mesh.enabled = b;
+        this.transform.GetComponent<SpriteRenderer>().enabled = b;
+        if(b){
+            bornTime = PopulationManager.elapsed;
+        }
+    }
+
+    private void Die(){
+        alive = false;
+        mesh.enabled = false;
+        PopulationManager.populationDead++;
     }
 
     public void SetColors(){
@@ -55,15 +71,11 @@ public class Brain : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "dead") {
-            alive = false;
-            mesh.enabled = false;
-            PopulationManager.populationCount--;
+            Die();
             winner = false;
         } else
         if(other.gameObject.tag == "win") {
-            alive = false;
-            mesh.enabled = false;
-            PopulationManager.populationCount--;
+            Die();
             winner = true;
         } else
         if(other.gameObject.tag != "decision") return;
