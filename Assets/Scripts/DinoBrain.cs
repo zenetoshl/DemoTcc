@@ -9,6 +9,7 @@ public class DinoBrain : MonoBehaviour
     public float bornTime = 0.0f;
     public float distanceWalked = 0.0f;
     public static int fitnessOpt = 3;
+    public float timeLimit = 15f;
     public DNA dna;
     bool alive = true;
     public bool winner = false;
@@ -108,6 +109,9 @@ public class DinoBrain : MonoBehaviour
     private void FixedUpdate () {
         if (!alive) return;
         timeAlive = PopulationManagerDino.elapsed;
+        if(timeAlive >= timeLimit){
+            Die();
+        }
         this.transform.Translate (0.05f,  0, 0);
         if(jump){
             Jump();

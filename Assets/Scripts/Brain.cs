@@ -8,11 +8,12 @@ public class Brain : MonoBehaviour {
     public float bornTime = 0.0f;
     public float distanceWalked = 0.0f;
     public static int fitnessOpt = 3;
+    public float timeLimit = 15f;
     public DNA dna;
     public GameObject eyes;
-    public MeshRenderer mesh;
     bool alive = true;
     public bool winner = false;
+    private Vector3 direction = new Vector3(0, .1f, 0);
     int i = 0;
     Vector3 initPos;
 
@@ -24,12 +25,10 @@ public class Brain : MonoBehaviour {
         //3 - esquerda
         ToggleBrain(false);
         initPos = transform.position;
-        dna = new DNA (dnaLength, 4);
+        dna = new DNA (dnaLength, 5);
         timeAlive = 0.0f;
         i = 1;
         distanceWalked = 0.0f;
-        SetColors();
-        Debug.Log(initPos);
     }
 
     public void Init (DNA Elitedna) {
@@ -45,13 +44,10 @@ public class Brain : MonoBehaviour {
         timeAlive = 0.0f;
         i = 1;
         distanceWalked = 0.0f;
-        SetColors();
-        Debug.Log(initPos);
     }
 
     public void ToggleBrain(bool b){
         alive = b;
-        mesh.enabled = b;
         this.transform.GetComponent<SpriteRenderer>().enabled = b;
         if(b){
             bornTime = PopulationManager.elapsed;
@@ -60,16 +56,14 @@ public class Brain : MonoBehaviour {
 
     private void Die(){
         alive = false;
-        mesh.enabled = false;
         PopulationManager.populationDead++;
     }
 
     public void SetColors(){
         Color color =  new Color(dna.r, dna.g, dna.b, 1);
-        mesh.material.color = color;
     }
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag == "dead") {
             Die();
             winner = false;
@@ -79,33 +73,33 @@ public class Brain : MonoBehaviour {
             winner = true;
         } else
         if(other.gameObject.tag != "decision") return;
-        Debug.Log(other.gameObject.tag);
-        float turn = 0;
         switch (dna.GetGene (i)) {
-            case 0:
-                turn = 0;
-                break;
             case 1:
-                turn = 90;
+                direction = new Vector3(.1f, 0, 0);
                 break;
             case 2:
-                turn = 180;
+                direction = new Vector3(0, .1f, 0);
                 break;
             case 3:
-                turn = 270;
+                direction = new Vector3(-0.1f, 0, 0);
+                break;
+            case 4:
+                direction = new Vector3(0, -0.1f, 0);
                 break;
         }
         if(i >= dnaLength - 2){
             i = 0;
         }
         i++;
-        this.transform.Rotate (0, turn, 0);
     }
 
     private void FixedUpdate () {
         if (!alive) return;
         timeAlive = PopulationManager.elapsed;
-        this.transform.Translate (0, 0, 0.1f);
+        if(timeAlive >= timeLimit){
+            Die();
+        }
+        this.transform.Translate (direction);
         distanceWalked = transform.position.z - initPos.z;
     }
 

@@ -47,6 +47,13 @@ public class PopulationManager : MonoBehaviour {
 
     GUIStyle guiStyle = new GUIStyle ();
 
+    private void Update() {
+        if (Input.GetKeyDown("space"))
+        {
+            StartGame();
+        }
+    }
+
     private void OnGUI () {
         if(started){
             guiStyle.fontSize = 25;
@@ -72,8 +79,8 @@ public class PopulationManager : MonoBehaviour {
             brain.Init ();
             population.Add (created);
         }
-        started = true;
         StartCoroutine("SpawnNewGeneration");
+        started = true;
     }
 
     private GameObject Breed (GameObject father, GameObject mother) {
