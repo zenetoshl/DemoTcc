@@ -32,6 +32,13 @@ public class PopulationManagerShip : MonoBehaviour
     public static int populationCount {
         get => populationAlive - populationDead;
     }
+    private static int _id = 1;
+    public static int id {
+        get {
+            _id += 1;
+            return _id;
+        }
+    }
     public static int populationDead = 0;
     public static int populationAlive = 0;
     public static int populationSize = 50;

@@ -35,6 +35,13 @@ public class PopulationManagerDino : MonoBehaviour {
     public static int populationAlive = 0;
     public static int populationSize = 50;
     public static int elite = 5;
+    private static int _id = 1;
+    public static int id {
+        get {
+            _id += 1;
+            return _id;
+        }
+    }
     public static int mutationPercentage = 1;
     public static float trialTime = 15.0f;
     public static int selectionOpt = 1;
