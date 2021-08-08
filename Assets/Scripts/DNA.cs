@@ -9,11 +9,16 @@ public class DNA {
     public float r = 1;
     public float g = 0;
     public float b = 0;
+    public int id = 0;
+    public string name = "";
     public static int breedOpt = 3;
     public static int mutationOpt = 3;
     private bool isShip = false;
+    private static int newId = 1;
 
     public DNA (int length, int mValues) {
+        id = newId;
+        newId += 1;
         dnaLength = length;
         maxValues = mValues;
         r = Random.Range (0.0f, 1.0f);
@@ -23,6 +28,8 @@ public class DNA {
     }
 
     public DNA (int length, int mValues, int maxSpeed, int maxFrameLimit) {
+        id = newId;
+        newId += 1;
         dnaLength = length;
         maxValues = mValues;
         r = Random.Range (0.0f, 1.0f);
@@ -33,6 +40,8 @@ public class DNA {
     }
 
     public DNA (DNA original){
+        id = original.id;
+        name = original.name;
         dnaLength = original.dnaLength;
         maxValues = original.maxValues;
         r = original.r;
@@ -49,6 +58,8 @@ public class DNA {
         for (int i = 0; i < dnaLength + (isShip ? 2 : 0) ; i++) {
             genes.Add (Random.Range (1, maxValues + 1));
         }
+        name = NameManger.instance.firstName + " " + NameManger.instance.lastName + " " + NameManger.instance.lastName;
+        id = newId;
     }
 
     public void SetGene (int pos, int value) {
@@ -75,6 +86,8 @@ public class DNA {
                 GenericBreed(parent1, parent2);
                 break;
         }
+        name = breedNames(parent1.name, parent2.name);
+        id = newId;
         r = parent2.r;
         g = parent1.g;
         b = parent2.b;
@@ -96,6 +109,7 @@ public class DNA {
                 FixedSizeMutation(2);
                 break;
         }
+        name = NameManger.instance.firstName + " " + NameManger.instance.lastName + " " + NameManger.instance.lastName;
     }
 
     public void FullMutation(){
@@ -131,5 +145,9 @@ public class DNA {
         for (int i = 0; i < dnaLength + (isShip ? 2 : 0); i++) {
             genes[i] = (i <(dnaLength + (isShip ? 2 : 0)) / 2) ? parent1.genes[i] : parent2.genes[i];
         }
+    }
+
+    private string breedNames(string nameParent1, string nameParent2){
+        return NameManger.instance.firstName + " " + nameParent1.Split(' ')[1] + " " + nameParent2.Split(' ')[2];
     }
 }

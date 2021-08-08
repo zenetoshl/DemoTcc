@@ -5314,6 +5314,7 @@ GameObject:
   m_Component:
   - component: {fileID: 933165022}
   - component: {fileID: 933165021}
+  - component: {fileID: 933165023}
   m_Layer: 0
   m_Name: populationManager
   m_TagString: Untagged
@@ -5350,6 +5351,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &933165023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933165020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b05fa9ed4c4694c94a15d1c142bf4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &979526439
 GameObject:
   m_ObjectHideFlags: 0
