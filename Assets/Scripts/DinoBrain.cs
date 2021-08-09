@@ -53,7 +53,7 @@ public class DinoBrain : MonoBehaviour
     }
     private void Die(){
         alive = false;
-        PopulationManager.populationDead++;
+        PopulationManagerDino.populationDead++;
     }
     
 
@@ -68,7 +68,6 @@ public class DinoBrain : MonoBehaviour
             winner = true;
             return;
         } if(other.gameObject.tag != "decision") return;
-        Debug.Log(other.gameObject.tag);
         float turn = 0;
         switch (dna.GetGene (i)) {
             case 0:

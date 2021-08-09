@@ -111,6 +111,12 @@ public class PopulationManagerDino : MonoBehaviour {
         populationDead = 0;
         populationAlive = 0;
         List<GameObject> sortedList = population.OrderBy (o => -o.GetComponent<DinoBrain>().CalculateFitness()).ToList ();
+        int index = GenerationsStats.instance.CreateNewGeneration();
+        foreach (GameObject o in sortedList){
+            DinoBrain brain = o.GetComponent<DinoBrain>();
+            GenerationsStats.instance.generations[index].AddIndividual(brain.dna, brain.CalculateFitness(), brain.timeAlive);
+        }
+        GenerationsViewManager.uiNeedUpdate = true;
         population.Clear ();
         if(selectionOpt == 1){
             SelectionByFittest(sortedList);
@@ -165,6 +171,7 @@ public class PopulationManagerDino : MonoBehaviour {
             elapsed += Time.deltaTime;
             if (populationDead >= populationSize) {
                 BreedNewPopulation ();
+                GenerationsViewManager.uiNeedUpdate = true;
                 elapsed = 0.0f;
                 Debug.Log("population size: " + populationSize);
                 Debug.Log("elite: " + elite);
