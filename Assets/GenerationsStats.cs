@@ -22,9 +22,22 @@ public class GenerationsStats : MonoBehaviour
             
         }
 
-        public List<IndividualStats> individuals;
 
-        public GenerationStats (){
+        public List<IndividualStats> individuals;
+        public int generation;
+        public float fitnessMean { 
+            get {
+                float total = 0f;
+                foreach( IndividualStats individual in individuals){
+                    total += individual.fitness;
+                }
+                return total / individuals.Count;
+        }}
+        public int noPenalty;
+
+        public GenerationStats (int generation, int noPenalty){
+            this.generation = generation;
+            this.noPenalty = noPenalty;
             individuals = new List<IndividualStats>();
         }
 
@@ -71,8 +84,8 @@ public class GenerationsStats : MonoBehaviour
             return _index;
         }}
         
-    public int CreateNewGeneration(){
-        generations.Add(new GenerationStats());
+    public int CreateNewGeneration(int noPenalty){
+        generations.Add(new GenerationStats(maxIndex+1, noPenalty));
         maxIndex += 1;
         return maxIndex;
     }

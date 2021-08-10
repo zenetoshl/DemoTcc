@@ -53,9 +53,11 @@ public class DinoBrain : MonoBehaviour
     }
     private void Die(){
         alive = false;
+        if(winner){
+            PopulationManagerDino.noPenalty++;
+        }
         PopulationManagerDino.populationDead++;
     }
-    
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag == "dead") {

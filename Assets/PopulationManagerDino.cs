@@ -46,6 +46,7 @@ public class PopulationManagerDino : MonoBehaviour {
     public static float trialTime = 15.0f;
     public static int selectionOpt = 1;
     public static float spawnTime = .15f;
+    public static int noPenalty = 0;
 
     public GameObject prefab;
     public List<GameObject> population = new List<GameObject> ();
@@ -111,7 +112,7 @@ public class PopulationManagerDino : MonoBehaviour {
         populationDead = 0;
         populationAlive = 0;
         List<GameObject> sortedList = population.OrderBy (o => -o.GetComponent<DinoBrain>().CalculateFitness()).ToList ();
-        int index = GenerationsStats.instance.CreateNewGeneration();
+        int index = GenerationsStats.instance.CreateNewGeneration(noPenalty);
         foreach (GameObject o in sortedList){
             DinoBrain brain = o.GetComponent<DinoBrain>();
             GenerationsStats.instance.generations[index].AddIndividual(brain.dna, brain.CalculateFitness(), brain.timeAlive);
@@ -173,14 +174,7 @@ public class PopulationManagerDino : MonoBehaviour {
                 BreedNewPopulation ();
                 GenerationsViewManager.uiNeedUpdate = true;
                 elapsed = 0.0f;
-                Debug.Log("population size: " + populationSize);
-                Debug.Log("elite: " + elite);
-                Debug.Log("breed opt: " + DNA.breedOpt);
-                Debug.Log("fitness Opt: " +  DinoBrain.fitnessOpt);
-                Debug.Log("Mutation opt: " + populationSize);
-                Debug.Log("selection Opt: " + selectionOpt);
-                Debug.Log("mutation percent: " + mutationPercentage);
-                Debug.Log("trial time: " + trialTime);
+                noPenalty = 0;
             }
         }
     }
