@@ -8,6 +8,8 @@ public class DinoBrain : MonoBehaviour
     public float timeAlive = 0.0f;
     public float bornTime = 0.0f;
     public float distanceWalked = 0.0f;
+    private float oldDistanceWalked = 0.0f;
+    private int frameCount = 0;
     public static int fitnessOpt = 3;
     public float timeLimit = 15f;
     public DNA dna;
@@ -61,13 +63,13 @@ public class DinoBrain : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag == "dead") {
-            Die();
             winner = false;
+            Die();
             return;
         } else
         if(other.gameObject.tag == "win") {
-            Die();
             winner = true;
+            Die();
             return;
         } if(other.gameObject.tag != "decision") return;
         float turn = 0;
@@ -109,7 +111,7 @@ public class DinoBrain : MonoBehaviour
 
     private void FixedUpdate () {
         if (!alive) return;
-        timeAlive = PopulationManagerDino.elapsed;
+        timeAlive = PopulationManagerDino.elapsed - bornTime;
         if(timeAlive >= timeLimit){
             Die();
         }
@@ -118,6 +120,17 @@ public class DinoBrain : MonoBehaviour
             Jump();
         }
         distanceWalked = transform.position.x - initPos.x;
+
+        //matar individuos que ficaram parados
+        frameCount = (frameCount + 1) % 10;
+        if(frameCount == 0){
+            if(distanceWalked - oldDistanceWalked <= 0.05f){
+                winner = false;
+                Die();
+            } else {
+                oldDistanceWalked = distanceWalked;
+            }
+        }
     }
 
     public float CalculateFitness(){

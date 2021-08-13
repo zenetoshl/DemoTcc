@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class GenerationsViewManager : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class GenerationsViewManager : MonoBehaviour
     public List<IndividualStatsManager> ismList = new List<IndividualStatsManager>();
     public static bool uiNeedUpdate = false;
     public TextMeshProUGUI bestFitnessMesh;
-    public TextMeshProUGUI title;
+    public Text title;
     public TextMeshProUGUI avgFitness; 
     public TextMeshProUGUI noPenalty;
 

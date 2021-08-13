@@ -61,19 +61,6 @@ public class PopulationManagerDino : MonoBehaviour {
         }
     }
 
-    private void OnGUI () {
-        if(started){
-            guiStyle.fontSize = 25;
-            guiStyle.normal.textColor = Color.white;
-            GUI.BeginGroup (new Rect (10, 10, 250, 150));
-            GUI.Box (new Rect (0, 0, 140, 140), "stats", guiStyle);
-            GUI.Label (new Rect (10, 25, 200, 30), "Generation: " + currentGeneration, guiStyle);
-            GUI.Label (new Rect (10, 50, 200, 30), string.Format ("Time: {0:0.00}", elapsed), guiStyle);
-            GUI.Label (new Rect (10, 75, 200, 30), "Population size: " + populationCount, guiStyle);
-            GUI.EndGroup ();
-        }
-    }
-
     public void StartGame () {
         Vector3 startPos;
         GameObject created;

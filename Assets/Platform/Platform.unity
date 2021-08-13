@@ -15825,10 +15825,10 @@ MonoBehaviour:
   individualCardPrefab: {fileID: 4409892445524064891, guid: f7c9cfd18a2219949aec03312c453c10, type: 3}
   newParent: {fileID: 4116639048054162602}
   ismList: []
-  bestFitnessMesh: {fileID: 0}
-  title: {fileID: 0}
-  avgFitness: {fileID: 0}
-  noPenalty: {fileID: 0}
+  bestFitnessMesh: {fileID: 927458025}
+  title: {fileID: 4116639048858689281}
+  avgFitness: {fileID: 1865277209}
+  noPenalty: {fileID: 696736043}
 --- !u!114 &4116639049062128274
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -83,6 +83,9 @@ public class GenerationsStats : MonoBehaviour
         public int index { get { 
             return _index;
         }}
+    public void SetMaxIndex(){
+        _index = maxIndex;
+    }
         
     public int CreateNewGeneration(int noPenalty){
         generations.Add(new GenerationStats(maxIndex+1, noPenalty));
