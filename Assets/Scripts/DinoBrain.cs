@@ -10,7 +10,7 @@ public class DinoBrain : MonoBehaviour
     public float distanceWalked = 0.0f;
     private float oldDistanceWalked = 0.0f;
     private int frameCount = 0;
-    public static int fitnessOpt = 3;
+    public static int fitnessOpt = 1;
     public float timeLimit = 15f;
     public DNA dna;
     bool alive = true;
