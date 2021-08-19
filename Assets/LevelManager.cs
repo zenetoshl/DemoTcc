@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
     public TMP_Text text;
     public Image[] stars;
     public LevelSelectorManager.Level level;
+    public Button button;
 
     public void SetLevel(LevelSelectorManager.Level level){
         this.level = level;
@@ -19,6 +20,7 @@ public class LevelManager : MonoBehaviour
     public void UpdateUI(){
         lockImage.gameObject.SetActive(false);
         text.gameObject.SetActive(true);
+        button.interactable = true;
         int loopLimit = level.stars > 3 ? 3 : level.stars;
         for (int i = 0; i < loopLimit; i++){
             stars[i].color = Color.yellow;

@@ -6,11 +6,13 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public GameObject menu;
-    public GameObject selection;
+    public GameObject selectionGO;
+    public LevelSelectorManager selection;
 
     public void ToSelection(){
         menu.SetActive(false);
-        selection.SetActive(true);
+        selectionGO.SetActive(true);
+        selection.GetGameInfo();
     }
 
     public void Continue(string SceneToLoad)

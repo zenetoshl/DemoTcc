@@ -43,6 +43,9 @@ public class LevelSelectorManager : MonoBehaviour
 
     private void Start() {
         gameinfo = LoadGame();
+    }
+
+    public void GetGameInfo(){
         dino.SetLevels(gameinfo.gameInfo[0]);
         labirint.SetLevels(gameinfo.gameInfo[1]);
         ships.SetLevels(gameinfo.gameInfo[2]);
@@ -63,10 +66,10 @@ public class LevelSelectorManager : MonoBehaviour
             FileStream file = new FileStream(Application.persistentDataPath + "/savedGame.mtg", FileMode.Open);
             BinaryFormatter binary = new BinaryFormatter ();
             var saveInfo = binary.Deserialize(file);
-            GameInfo ahmlk = JsonUtility.FromJson<GameInfo>("" + saveInfo);
+            GameInfo gameInfoLoaded = JsonUtility.FromJson<GameInfo>("" + saveInfo);
             Debug.Log("LOADING ------" + saveInfo);
             file.Close();
-            return ahmlk;
+            return gameInfoLoaded;
         } else {
             Debug.Log("erro no load: arquivo não encontrado, resetando...");
             return ResetGame();
