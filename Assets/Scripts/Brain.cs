@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Brain : MonoBehaviour {
+    public SpriteRenderer sprite;
     public static int dnaLength = 6;
     public float timeAlive = 0.0f;
     public float bornTime = 0.0f;
@@ -76,12 +77,14 @@ public class Brain : MonoBehaviour {
         switch (dna.GetGene (i)) {
             case 1:
                 direction = new Vector3(.1f, 0, 0);
+                sprite.flipX = false;
                 break;
             case 2:
                 direction = new Vector3(0, .1f, 0);
                 break;
             case 3:
                 direction = new Vector3(-0.1f, 0, 0);
+                sprite.flipX = true;
                 break;
             case 4:
                 direction = new Vector3(0, -0.1f, 0);

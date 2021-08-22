@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59513370dbc04342a549f9905968883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprite: {fileID: 8376902741273595305}
   timeAlive: 0
   bornTime: 0
   distanceWalked: 0

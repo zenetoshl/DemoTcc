@@ -52,7 +52,6 @@ public class PopulationManagerDino : MonoBehaviour {
     public static float spawnTime = .15f;
     public static int noPenalty = 0;
     public static float bestFitness;
-
     public GameObject prefab;
     public GameInfoManager gameInfoManager;
     public List<GameObject> population = new List<GameObject> ();
@@ -64,10 +63,16 @@ public class PopulationManagerDino : MonoBehaviour {
         }
     }
 
-    private void CheckWin(){
-        bool m1 = true;
-        bool m2 = true;
-        bool m3 = true;
+    private void CheckWin(List<GameObject> pop){
+        int winners = 0;
+        foreach (GameObject o in pop){
+            if(o.GetComponent<DinoBrain>().winner){
+                winners++;
+            }
+        }
+        bool m1 = winners >= (populationSize / 2);
+        bool m2 = currentGeneration < 10;
+        bool m3 = complexityPoints < 700;
         winner.UpdateWinnersWindow(m1, m2, m3);
     }
 
@@ -179,7 +184,7 @@ public class PopulationManagerDino : MonoBehaviour {
         if(started){
             elapsed += Time.deltaTime;
             if (populationDead >= populationSize) {
-                CheckWin();
+                CheckWin(population);
                 BreedNewPopulation ();
                 GenerationsViewManager.uiNeedUpdate = true;
                 elapsed = 0.0f;

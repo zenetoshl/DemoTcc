@@ -42,7 +42,7 @@ public class LevelSelectorManager : MonoBehaviour
     public LevelsManager ships;
 
     private void Start() {
-        gameinfo = LoadGame();
+        LoadGame();
     }
 
     public void GetGameInfo(){
@@ -53,7 +53,7 @@ public class LevelSelectorManager : MonoBehaviour
 
     public void SaveGame() {
         BinaryFormatter binary = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/savedGame.mtg";
+        string path = Application.persistentDataPath + "/savedGameData.mtg";
         FileStream fileStream = new FileStream(path, FileMode.Create);
         var json = JsonUtility.ToJson(gameinfo);
         Debug.Log("SALVANDO ---" + json);
@@ -61,22 +61,27 @@ public class LevelSelectorManager : MonoBehaviour
         fileStream.Close();
     }
 
-    public GameInfo LoadGame(){
-        if (File.Exists (Application.persistentDataPath + "/savedGame.mtg")) {
-            FileStream file = new FileStream(Application.persistentDataPath + "/savedGame.mtg", FileMode.Open);
+    public void LoadGame(){
+        if (File.Exists (Application.persistentDataPath + "/savedGameData.mtg")) {
+            FileStream file = new FileStream(Application.persistentDataPath + "/savedGameData.mtg", FileMode.Open);
             BinaryFormatter binary = new BinaryFormatter ();
             var saveInfo = binary.Deserialize(file);
             GameInfo gameInfoLoaded = JsonUtility.FromJson<GameInfo>("" + saveInfo);
             Debug.Log("LOADING ------" + saveInfo);
             file.Close();
-            return gameInfoLoaded;
+            gameinfo = gameInfoLoaded;
         } else {
             Debug.Log("erro no load: arquivo não encontrado, resetando...");
-            return ResetGame();
+            ResetGame();
         }
     }
 
-    public GameInfo ResetGame(){
-        return new GameInfo(new List<Levels> {new Levels( new List<Level> {new Level(2), new Level(0), new Level(0)}), new Levels( new List<Level> {new Level(0), new Level(0), new Level(0)}), new Levels( new List<Level> {new Level(0), new Level(0), new Level(0)})});
+    public void ResetGame(){
+        gameinfo = new GameInfo(new List<Levels> {
+            new Levels( new List<Level> {new Level(0), new Level(0), new Level(0)}),
+            new Levels( new List<Level> {new Level(0), new Level(0), new Level(0)}),
+            new Levels( new List<Level> {new Level(0), new Level(0), new Level(0)})
+         });
+        SaveGame();
     }
 }

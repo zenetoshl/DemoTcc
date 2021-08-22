@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using TMPro;
 
 public class PopulationManager : MonoBehaviour {
     static PopulationManager _instance;
@@ -26,6 +27,8 @@ public class PopulationManager : MonoBehaviour {
             return _instance;
         }
     }
+    public WinnerCheck winner;
+    public TMP_Text pointsText;
     public bool started = false;
     public static float elapsed = 0.0f;
     public static int populationCount {
@@ -39,20 +42,26 @@ public class PopulationManager : MonoBehaviour {
         }
     }
     public static int populationDead = 0;
+    public static int complexityPoints = 0;
+    public static int noPenalty = 0;
     public static int populationAlive = 0;
     public static int populationSize = 50;
     public static int elite = 2;
     public static int mutationPercentage = 1;
     public static float trialTime = 10.0f;
     public static int selectionOpt = 1;
-    public static float spawnTime = .05f;
+    public static float spawnTime = .15f;
+    public static float bestFitness;
 
     public GameObject prefab;
+    public GameInfoManager gameInfoManager;
     public List<GameObject> population = new List<GameObject> ();
+    private static int currentGeneration = 0;
 
-    private int currentGeneration = 1;
-
-    GUIStyle guiStyle = new GUIStyle ();
+    private void GetNewPointsCount(){
+        complexityPoints = (mutationPercentage * 5) + (selectionOpt * 10) + (elite * 20) + (populationSize * 3) + (DNA.mutationOpt * 10) + (DNA.breedOpt * 10);
+        pointsText.text = complexityPoints + " PTS";
+    }
 
     private void Update() {
         if (Input.GetKeyDown("space"))
@@ -61,17 +70,17 @@ public class PopulationManager : MonoBehaviour {
         }
     }
 
-    private void OnGUI () {
-        if(started){
-            guiStyle.fontSize = 25;
-            guiStyle.normal.textColor = Color.white;
-            GUI.BeginGroup (new Rect (10, 10, 250, 150));
-            GUI.Box (new Rect (0, 0, 140, 140), "stats", guiStyle);
-            GUI.Label (new Rect (10, 25, 200, 30), "Generation: " + currentGeneration, guiStyle);
-            GUI.Label (new Rect (10, 50, 200, 30), string.Format ("Time: {0:0.00}", elapsed), guiStyle);
-            GUI.Label (new Rect (10, 75, 200, 30), "Population size: " + populationCount, guiStyle);
-            GUI.EndGroup ();
+    private void CheckWin(List<GameObject> pop){
+        int winners = 0;
+        foreach (GameObject o in pop){
+            if(o.GetComponent<Brain>().winner){
+                winners++;
+            }
         }
+        bool m1 = winners >= (populationSize / 2);
+        bool m2 = currentGeneration < 10;
+        bool m3 = complexityPoints < 700;
+        winner.UpdateWinnersWindow(m1, m2, m3);
     }
 
     public void StartGame () {
@@ -113,13 +122,24 @@ public class PopulationManager : MonoBehaviour {
         populationDead = 0;
         populationAlive = 0;
         List<GameObject> sortedList = population.OrderBy (o => -o.GetComponent<Brain>().CalculateFitness()).ToList ();
+        float genBestFitness = sortedList[0].GetComponent<DinoBrain>().CalculateFitness();
+        if(currentGeneration == 0){
+            bestFitness = genBestFitness;
+        } else if (bestFitness <= genBestFitness){
+            bestFitness = genBestFitness;
+        }
+        int index = GenerationsStats.instance.CreateNewGeneration(noPenalty);
+        foreach (GameObject o in sortedList){
+            DinoBrain brain = o.GetComponent<DinoBrain>();
+            GenerationsStats.instance.generations[index].AddIndividual(brain.dna, brain.CalculateFitness(), brain.timeAlive);
+        }
+        GenerationsViewManager.uiNeedUpdate = true;
         population.Clear ();
         if(selectionOpt == 1){
             SelectionByFittest(sortedList);
         } else {
             RandomSelection(sortedList);
         }
-
         foreach (GameObject obj in sortedList) {
             Destroy (obj);
         }
@@ -166,16 +186,12 @@ public class PopulationManager : MonoBehaviour {
         if(started){
             elapsed += Time.deltaTime;
             if (populationDead >= populationSize) {
+                CheckWin(population);
                 BreedNewPopulation ();
                 elapsed = 0.0f;
-                Debug.Log("population size: " + populationSize);
-                Debug.Log("elite: " + elite);
-                Debug.Log("breed opt: " + DNA.breedOpt);
-                Debug.Log("fitness Opt: " +  Brain.fitnessOpt);
-                Debug.Log("Mutation opt: " + populationSize);
-                Debug.Log("selection Opt: " + selectionOpt);
-                Debug.Log("mutation percent: " + mutationPercentage);
-                Debug.Log("trial time: " + trialTime);
+
+                noPenalty = 0;
+                gameInfoManager.updateNewGeneration( bestFitness, currentGeneration);
             }
         }
     }
@@ -185,6 +201,7 @@ public class PopulationManager : MonoBehaviour {
             opt = 1;
         }
         DNA.breedOpt = opt;
+        GetNewPointsCount();
     }
 
     public void SetFitnessOpt(int opt){
@@ -192,6 +209,7 @@ public class PopulationManager : MonoBehaviour {
             opt = 1;
         }
         Brain.fitnessOpt = opt;
+        GetNewPointsCount();
     }
 
     public void SetMutationOpt(int opt){
@@ -199,6 +217,7 @@ public class PopulationManager : MonoBehaviour {
             opt = 1;
         }
         DNA.mutationOpt = opt;
+        GetNewPointsCount();
     }
 
     public void SetSelectionOpt(int opt){
@@ -206,6 +225,7 @@ public class PopulationManager : MonoBehaviour {
             opt = 1;
         }
         selectionOpt = opt;
+        GetNewPointsCount();
     }
 
     public void SetMutation(int opt){
@@ -215,6 +235,7 @@ public class PopulationManager : MonoBehaviour {
         } else if (mutationPercentage >= 100){
             mutationPercentage = 100;
         }
+        GetNewPointsCount();
     }
 
     public void SetPopulation(int opt){
@@ -224,6 +245,7 @@ public class PopulationManager : MonoBehaviour {
         } else if (populationSize >= 100){
             populationSize = 100;
         }
+        GetNewPointsCount();
     }
 
     public void SetGenesSize(int opt){
@@ -233,6 +255,7 @@ public class PopulationManager : MonoBehaviour {
         } else if (Brain.dnaLength >= 100){
             Brain.dnaLength = 100;
         }
+        GetNewPointsCount();
     }
 
     public void SetElite(int opt){
@@ -242,6 +265,7 @@ public class PopulationManager : MonoBehaviour {
         } else if (elite >= populationSize - 1){
             elite = populationSize - 1;
         }
+        GetNewPointsCount();
     }
 
     public void SetTrialTime(int opt){
@@ -251,5 +275,6 @@ public class PopulationManager : MonoBehaviour {
         } else if (trialTime >= 20){
             trialTime = 20;
         }
+        GetNewPointsCount();
     }
 }
