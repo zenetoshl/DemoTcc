@@ -77,7 +77,7 @@ public class PopulationManager : MonoBehaviour {
                 winners++;
             }
         }
-        bool m1 = winners >= (populationSize / 2);
+        bool m1 = winners >= (populationSize / 50);
         bool m2 = currentGeneration < 10;
         bool m3 = complexityPoints < 700;
         winner.UpdateWinnersWindow(m1, m2, m3);
@@ -122,7 +122,7 @@ public class PopulationManager : MonoBehaviour {
         populationDead = 0;
         populationAlive = 0;
         List<GameObject> sortedList = population.OrderBy (o => -o.GetComponent<Brain>().CalculateFitness()).ToList ();
-        float genBestFitness = sortedList[0].GetComponent<DinoBrain>().CalculateFitness();
+        float genBestFitness = sortedList[0].GetComponent<Brain>().CalculateFitness();
         if(currentGeneration == 0){
             bestFitness = genBestFitness;
         } else if (bestFitness <= genBestFitness){
@@ -130,7 +130,7 @@ public class PopulationManager : MonoBehaviour {
         }
         int index = GenerationsStats.instance.CreateNewGeneration(noPenalty);
         foreach (GameObject o in sortedList){
-            DinoBrain brain = o.GetComponent<DinoBrain>();
+            Brain brain = o.GetComponent<Brain>();
             GenerationsStats.instance.generations[index].AddIndividual(brain.dna, brain.CalculateFitness(), brain.timeAlive);
         }
         GenerationsViewManager.uiNeedUpdate = true;
@@ -191,8 +191,9 @@ public class PopulationManager : MonoBehaviour {
                 elapsed = 0.0f;
 
                 noPenalty = 0;
-                gameInfoManager.updateNewGeneration( bestFitness, currentGeneration);
+                gameInfoManager.updateNewGeneration(bestFitness, currentGeneration);
             }
+            gameInfoManager.UpdateUI(populationCount, elapsed, noPenalty);
         }
     }
 

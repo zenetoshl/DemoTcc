@@ -25,6 +25,7 @@ public class Brain : MonoBehaviour {
         //2 - tras
         //3 - esquerda
         ToggleBrain(false);
+        sprite.enabled = true;
         initPos = transform.position;
         dna = new DNA (dnaLength, 5);
         timeAlive = 0.0f;
@@ -39,6 +40,7 @@ public class Brain : MonoBehaviour {
         //2 - tras
         //3 - esquerda
         ToggleBrain(false);
+        sprite.enabled = true;
         initPos = transform.position;
         dnaLength = 100;
         dna = new DNA(Elitedna);
@@ -71,6 +73,7 @@ public class Brain : MonoBehaviour {
         } else
         if(other.gameObject.tag == "win") {
             Die();
+            sprite.enabled = false;
             winner = true;
         } else
         if(other.gameObject.tag != "decision") return;
@@ -98,7 +101,7 @@ public class Brain : MonoBehaviour {
 
     private void FixedUpdate () {
         if (!alive) return;
-        timeAlive = PopulationManager.elapsed;
+        timeAlive = PopulationManager.elapsed - bornTime;
         if(timeAlive >= timeLimit){
             Die();
         }
