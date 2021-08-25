@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using TMPro;
 
-public class PopulationManagerShip : MonoBehaviour
-{
-    static PopulationManagerDino _instance;
-    public static PopulationManagerDino instance {
+public class PopulationManagerShip : MonoBehaviour{
+    static PopulationManagerShip _instance;
+    public static PopulationManagerShip instance {
         get {
             if (!_instance) {
                 //first try to find one in the scene
-                _instance = FindObjectOfType<PopulationManagerDino> ();
+                _instance = FindObjectOfType<PopulationManagerShip> ();
 
                 if (!_instance) {
                     //if that fails, make a new one
                     GameObject go = new GameObject ("_VariablesManager");
-                    _instance = go.AddComponent<PopulationManagerDino> ();
+                    _instance = go.AddComponent<PopulationManagerShip> ();
 
                     if (!_instance) {
                         //if that still fails, we have a big problem;
-                        Debug.LogError ("Fatal Error: could not create PopulationManagerDino");
+                        Debug.LogError ("Fatal Error: could not create PopulationManagerShip");
                     }
                 }
             }
@@ -27,6 +27,8 @@ public class PopulationManagerShip : MonoBehaviour
             return _instance;
         }
     }
+    public WinnerCheck winner;
+    public TMP_Text pointsText;
     public bool started = false;
     public static float elapsed = 0.0f;
     public static int populationCount {
@@ -40,38 +42,38 @@ public class PopulationManagerShip : MonoBehaviour
         }
     }
     public static int populationDead = 0;
+    public static int complexityPoints = 0;
+    public static int noPenalty = 0;
     public static int populationAlive = 0;
     public static int populationSize = 50;
     public static int elite = 10;
     public static int mutationPercentage = 1;
     public static float trialTime = 15.0f;
     public static int selectionOpt = 1;
-    public static int aboveZero = 0;
     public static float spawnTime = .05f;
+    public static float bestFitness;
+
     public GameObject prefab;
+    public GameInfoManager gameInfoManager;
     public List<GameObject> population = new List<GameObject> ();
+    private static int currentGeneration = 0;
 
-    private int currentGeneration = 1;
-
-    GUIStyle guiStyle = new GUIStyle ();
-    private void Update() {
-        if (Input.GetKeyDown("space"))
-        {
-            StartGame();
-        }
+    private void GetNewPointsCount(){
+        complexityPoints = (mutationPercentage * 5) + (selectionOpt * 10) + (elite * 20) + (populationSize * 3) + (DNA.mutationOpt * 10) + (DNA.breedOpt * 10);
+        pointsText.text = complexityPoints + " PTS";
     }
 
-    private void OnGUI () {
-        if(started){
-            guiStyle.fontSize = 25;
-            guiStyle.normal.textColor = Color.white;
-            GUI.BeginGroup (new Rect (10, 10, 250, 150));
-            GUI.Box (new Rect (0, 0, 140, 140), "stats", guiStyle);
-            GUI.Label (new Rect (10, 25, 200, 30), "Generation: " + currentGeneration, guiStyle);
-            GUI.Label (new Rect (10, 50, 200, 30), string.Format ("Time: {0:0.00}", elapsed), guiStyle);
-            GUI.Label (new Rect (10, 75, 200, 30), "Population size: " + populationCount, guiStyle);
-            GUI.EndGroup ();
+    private void CheckWin(List<GameObject> pop){
+        int winners = 0;
+        foreach (GameObject o in pop){
+            if(o.GetComponent<ShipController>().winner){
+                winners++;
+            }
         }
+        bool m1 = winners >= (populationSize / 50);
+        bool m2 = currentGeneration < 10;
+        bool m3 = complexityPoints < 700;
+        winner.UpdateWinnersWindow(m1, m2, m3);
     }
 
     public void StartGame () {
@@ -86,8 +88,7 @@ public class PopulationManagerShip : MonoBehaviour
             brain.Init ();
             population.Add (created);
         }
-        StartCoroutine("SpawnNewGeneration");  
-        Debug.Log(population.Count);
+        StartCoroutine("SpawnNewGeneration");
         started = true;
     }
 
@@ -110,11 +111,23 @@ public class PopulationManagerShip : MonoBehaviour
     }
 
     private void BreedNewPopulation () {
-        Debug.Log("acima de 0 pontos:" + aboveZero);
-        aboveZero = 0;
+        Debug.Log("acima de 0 pontos:" + noPenalty);
+        noPenalty = 0;
         populationDead = 0;
         populationAlive = 0;
         List<GameObject> sortedList = population.OrderBy (o => -o.GetComponent<ShipController>().fitness).ToList ();
+        float genBestFitness = sortedList[0].GetComponent<ShipController>().CalculateFitness();
+        if(currentGeneration == 0){
+            bestFitness = genBestFitness;
+        } else if (bestFitness <= genBestFitness){
+            bestFitness = genBestFitness;
+        }
+        int index = GenerationsStats.instance.CreateNewGeneration(noPenalty);
+        foreach (GameObject o in sortedList){
+            ShipController brain = o.GetComponent<ShipController>();
+            GenerationsStats.instance.generations[index].AddIndividual(brain.dna, brain.CalculateFitness(), brain.timeAlive);
+        }
+        GenerationsViewManager.uiNeedUpdate = true;
         population.Clear ();
         if(selectionOpt == 1){
             SelectionByFittest(sortedList);
@@ -170,15 +183,10 @@ public class PopulationManagerShip : MonoBehaviour
             if (populationDead >= populationSize) {
                 BreedNewPopulation ();
                 elapsed = 0.0f;
-                Debug.Log("population size: " + populationSize);
-                Debug.Log("elite: " + elite);
-                Debug.Log("breed opt: " + DNA.breedOpt);
-                Debug.Log("fitness Opt: " +  ShipController.fitnessOpt);
-                Debug.Log("Mutation opt: " + populationSize);
-                Debug.Log("selection Opt: " + selectionOpt);
-                Debug.Log("mutation percent: " + mutationPercentage);
-                Debug.Log("trial time: " + trialTime);
+                noPenalty = 0;
+                gameInfoManager.updateNewGeneration(bestFitness, currentGeneration);
             }
+            gameInfoManager.UpdateUI(populationCount, elapsed, noPenalty);
         }
     }
 
@@ -187,6 +195,7 @@ public class PopulationManagerShip : MonoBehaviour
             opt = 1;
         }
         DNA.breedOpt = opt;
+        GetNewPointsCount();
     }
 
     public void SetFitnessOpt(int opt){
@@ -194,6 +203,7 @@ public class PopulationManagerShip : MonoBehaviour
             opt = 1;
         }
         ShipController.fitnessOpt = opt;
+        GetNewPointsCount();
     }
 
     public void SetMutationOpt(int opt){
@@ -201,6 +211,7 @@ public class PopulationManagerShip : MonoBehaviour
             opt = 1;
         }
         DNA.mutationOpt = opt;
+        GetNewPointsCount();
     }
 
     public void SetSelectionOpt(int opt){
@@ -208,6 +219,7 @@ public class PopulationManagerShip : MonoBehaviour
             opt = 1;
         }
         selectionOpt = opt;
+        GetNewPointsCount();
     }
 
     public void SetMutation(int opt){
@@ -217,6 +229,7 @@ public class PopulationManagerShip : MonoBehaviour
         } else if (mutationPercentage >= 100){
             mutationPercentage = 100;
         }
+        GetNewPointsCount();
     }
 
     public void SetPopulation(int opt){
@@ -226,6 +239,7 @@ public class PopulationManagerShip : MonoBehaviour
         } else if (populationSize >= 100){
             populationSize = 100;
         }
+        GetNewPointsCount();
     }
 
     public void SetGenesSize(int opt){
@@ -235,6 +249,7 @@ public class PopulationManagerShip : MonoBehaviour
         } else if (ShipController.dnaLength >= 100){
             ShipController.dnaLength = 100;
         }
+        GetNewPointsCount();
     }
 
     public void SetElite(int opt){
@@ -244,6 +259,7 @@ public class PopulationManagerShip : MonoBehaviour
         } else if (elite >= populationSize - 1){
             elite = populationSize - 1;
         }
+        GetNewPointsCount();
     }
 
     public void SetTrialTime(int opt){
@@ -253,5 +269,6 @@ public class PopulationManagerShip : MonoBehaviour
         } else if (trialTime >= 20){
             trialTime = 20;
         }
+        GetNewPointsCount();
     }
 }

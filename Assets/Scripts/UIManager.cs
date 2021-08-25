@@ -33,17 +33,35 @@ public class UIManager : MonoBehaviour
         PopulationManagerDino.instance.SetSelectionOpt(selectionOption.value + 1);
     }
 
+    public void SetShipsMutationOption(){
+        PopulationManagerShip.instance.SetMutationOpt(mutationOption.value + 1);
+    }
+    public void SetShipsBreedOption(){
+        PopulationManagerShip.instance.SetBreedOpt(breedOption.value + 1);
+    }
+    public void SetShipsSelectionOption(){
+        PopulationManagerShip.instance.SetSelectionOpt(selectionOption.value + 1);
+    }
+
     private void Start() {
-        if (SceneManager.GetActiveScene ().name == "Platform"){
-            SetDinoMutationOption();
-            SetDinoBreedOption();
-            SetDinoSelectionOption();
-            UpdateDinoUi();
+        if(SceneManager.GetActiveScene ().name == "ships"){
+                SetShipsSelectionOption();
+                SetShipsMutationOption();
+                SetShipsBreedOption();
+                UpdateShipUi();
+        
         } else {
-            SetMutationOption();
-            SetBreedOption();
-            SetSelectionOption();
-            UpdateUi();
+            if (SceneManager.GetActiveScene ().name == "Platform"){
+                SetDinoMutationOption();
+                SetDinoBreedOption();
+                SetDinoSelectionOption();
+                UpdateDinoUi();
+            } else {
+                SetMutationOption();
+                SetBreedOption();
+                SetSelectionOption();
+                UpdateUi();
+            }
         }
     }
 
@@ -57,5 +75,11 @@ public class UIManager : MonoBehaviour
         eliteSize.text = "" + PopulationManagerDino.elite;
         mutationPercent.text = "" + PopulationManagerDino.mutationPercentage;
         populationSize.text = "" + PopulationManagerDino.populationSize;
+    }
+
+    public void UpdateShipUi(){
+        eliteSize.text = "" + PopulationManagerShip.elite;
+        mutationPercent.text = "" + PopulationManagerShip.mutationPercentage;
+        populationSize.text = "" + PopulationManagerShip.populationSize;
     }
 }

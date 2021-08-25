@@ -63,13 +63,6 @@ public class PopulationManager : MonoBehaviour {
         pointsText.text = complexityPoints + " PTS";
     }
 
-    private void Update() {
-        if (Input.GetKeyDown("space"))
-        {
-            StartGame();
-        }
-    }
-
     private void CheckWin(List<GameObject> pop){
         int winners = 0;
         foreach (GameObject o in pop){

@@ -6,6 +6,7 @@ using System;
 public class ShipController : MonoBehaviour
 {
     public static int dnaLength = 300;
+    public bool winner = false;
     public int turnAngleLimit = 45;
     public int maxFrameLimit = 9; //plus 1
     public float timeLimit = 15f;
@@ -44,6 +45,7 @@ public class ShipController : MonoBehaviour
         frame = 0;
         i = 0;
         distanceWalked = 0.0f;
+        winner = false;
     }
 
     public void Init (DNA Elitedna, float fitness) {
@@ -59,14 +61,14 @@ public class ShipController : MonoBehaviour
         frame = 0;
         i = 0;
         distanceWalked = 0.0f;
+        winner = false;
     }
 
     private void Die(){
         alive = false;
-        fitness = CalculateFitness1();
         PopulationManagerShip.populationDead++;
-        if(fitness > 0){
-            PopulationManagerShip.aboveZero++;
+        if(winner){
+            PopulationManagerShip.noPenalty++;
         }
     }
 
@@ -85,6 +87,8 @@ public class ShipController : MonoBehaviour
             return;
         } else
         if(other.gameObject.tag == "win") {
+            winner = true;
+            Debug.Log("passei aqui");
             int id = int.Parse(other.gameObject.name);
             if(!goalsId.Contains(id)){
                 goalsId.Add(id);
@@ -97,6 +101,7 @@ public class ShipController : MonoBehaviour
 
     private void FixedUpdate () {
         if (!alive) return;
+        timeAlive = PopulationManagerShip.elapsed - bornTime;
         if(timeAlive >= timeLimit){
             Die();
         }
@@ -107,7 +112,6 @@ public class ShipController : MonoBehaviour
             i++;
             i = i % dnaLength;
         }
-        timeAlive = PopulationManagerShip.elapsed - bornTime;
         this.transform.Translate (0,  speed, 0);
         distanceWalked += speed;
         frame = frame %  (int) frameLimit;
@@ -123,7 +127,7 @@ public class ShipController : MonoBehaviour
             case 3:
                 return CalculateFitness3();
             default:
-                return CalculateFitness3();
+                return CalculateFitness1();
         }
     }
 
