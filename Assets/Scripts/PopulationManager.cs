@@ -59,6 +59,9 @@ public class PopulationManager : MonoBehaviour {
     public List<GameObject> population = new List<GameObject> ();
     private static int currentGeneration = 0;
 
+    public int maxGenStar = 10;
+    public int maxComplexityStar = 600;
+
     private void GetNewPointsCount(){
         complexityPoints = (mutationPercentage * 5) + (selectionOpt * 10) + (elite * 20) + (populationSize * 3) + (DNA.mutationOpt * 10) + (DNA.breedOpt * 10);
         pointsText.text = complexityPoints + " PTS";
@@ -72,8 +75,8 @@ public class PopulationManager : MonoBehaviour {
             }
         }
         bool m1 = winners >= (populationSize / 2);
-        bool m2 = currentGeneration < 10;
-        bool m3 = complexityPoints < 700;
+        bool m2 = currentGeneration < maxGenStar;
+        bool m3 = complexityPoints < maxComplexityStar;
         winner.UpdateWinnersWindow(m1, m2, m3);
     }
 
