@@ -55,6 +55,7 @@ public class PopulationManagerShip : MonoBehaviour{
 
     public GameObject prefab;
     public GameInfoManager gameInfoManager;
+    public GameObject rankButton;
     public List<GameObject> population = new List<GameObject> ();
     private static int currentGeneration = 0;
 
@@ -129,6 +130,7 @@ public class PopulationManagerShip : MonoBehaviour{
         }
         GenerationsViewManager.uiNeedUpdate = true;
         population.Clear ();
+        rankButton.SetActive (true);
         if(selectionOpt == 1){
             SelectionByFittest(sortedList);
         } else {

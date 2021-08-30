@@ -73,6 +73,7 @@ public class Brain : MonoBehaviour {
         } else
         if(other.gameObject.tag == "win") {
             Die();
+            PopulationManager.noPenalty++;
             sprite.enabled = false;
             winner = true;
         } else

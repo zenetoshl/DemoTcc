@@ -1948,32 +1948,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoTxt: {fileID: 1898272706708344027}
-  text: 4 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at tincidunt
-    leo, quis gravida metus. Donec metus arcu, sagittis sed viverra ut, placerat
-    nec urna. Donec facilisis erat metus, vel imperdiet velit interdum vel. Donec
-    imperdiet accumsan purus a accumsan. Duis mollis orci ex, efficitur aliquam ligula
-    malesuada in. Pellentesque sit amet tortor quis ipsum malesuada consequat vel
-    in est. Duis dapibus mollis neque vel ornare. Sed iaculis leo non libero pretium,
-    feugiat consequat lacus accumsan. In egestas pulvinar lacus, lacinia hendrerit
-    odio scelerisque sed. Sed purus lectus, dapibus sit amet mollis at, viverra non
-    metus.   Fusce efficitur tempor enim, eget facilisis nibh aliquam sit amet. Suspendisse
-    id congue augue. Aenean ultrices tortor vel dignissim vehicula. Pellentesque
-    habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-    Phasellus non tellus eget magna ultrices placerat in nec neque. Class aptent
-    taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-    Praesent porta ante a nunc euismod laoreet sed eu elit. Proin sit amet cursus
-    dui, sit amet facilisis sapien. Vivamus semper arcu in enim euismod auctor. In
-    non arcu vel turpis accumsan pretium. Duis in rhoncus est.   Fusce ullamcorper
-    sodales efficitur. Vivamus aliquam, elit ut tincidunt pellentesque, lorem velit
-    suscipit nibh, quis consequat quam elit vel orci. Nunc nunc lectus, tincidunt
-    nec elit lacinia, condimentum aliquet libero. Morbi vehicula quis dui a dapibus.
-    Curabitur elit augue, ultricies ac tempor eu, vulputate et ligula. Quisque et
-    justo aliquam, porta ligula et, auctor urna. Interdum et malesuada fames ac ante
-    ipsum primis in faucibus. Maecenas pulvinar enim felis, ac interdum turpis tristique
-    bibendum. Proin volutpat nulla risus, ut porta arcu vulputate vel. Cras volutpat
-    mauris ac bibendum egestas. Sed id mauris gravida, scelerisque lorem eu, faucibus
-    purus. Sed tincidunt nibh et nulla dignissim gravida. Aenean eget elit in nulla
-    tempus aliquet.
+  text: "A sele\xE7\xE3o tamb\xE9m \xE9 uma parte chave do algoritmo, ela \xE9 responsavel
+    por selecionar quais individuos se reproduzir\xE3o em cada gera\xE7\xE3o. \r\n\r\nEm
+    geral, usa-se o algoritmo de sele\xE7\xE3o por \"roleta\", onde os indiv\xEDduos
+    s\xE3o ordenados de acordo com a fun\xE7\xE3o-objetivo e lhes s\xE3o atribu\xEDdas
+    probabilidades decrescentes de serem escolhidos A escolha \xE9 feita ent\xE3o
+    aleatoriamente de acordo com essas probabilidades. \r\nTemos tamb\xE9m a sele\xE7\xE3o
+    por \"torneio\", onde s\xE3o selecionados diversos pequenos subconjuntos da popula\xE7\xE3o,
+    sendo selecionado o indiv\xEDduo de maior adequa\xE7\xE3o de cada um desses grupos\r\nE
+    a sele\xE7\xE3o por \"truncamento\", onde s\xE3o selecionados os N/2 melhores
+    indiv\xEDduos da popula\xE7\xE3o, descartando-se os outros, sendo N o tamanho
+    da popula\xE7\xE3o."
 --- !u!1 &1898272706372013364
 GameObject:
   m_ObjectHideFlags: 0
@@ -2915,7 +2900,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Sele\xE7\xE3o dos melhores"
+  m_text: Truncamento
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2989,10 +2974,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1898272706581928600}
-    characterCount: 20
+    characterCount: 11
     spriteCount: 0
-    spaceCount: 2
-    wordCount: 3
+    spaceCount: 0
+    wordCount: 1
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -3920,7 +3905,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 5.8001404, y: -515.15}
+  m_AnchoredPosition: {x: 5.8001404, y: -515.14996}
   m_SizeDelta: {x: 11.799988, y: 1030.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1898272706708344026
@@ -4020,7 +4005,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_isAlignmentEnumConverted: 1
@@ -4626,8 +4611,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1898272706372013370}
   m_HandleRect: {fileID: 1898272706372013371}
   m_Direction: 2
-  m_Value: 1.0000007
-  m_Size: 0.8413084
+  m_Value: 0.9999992
+  m_Size: 0.8413082
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5682,32 +5667,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoTxt: {fileID: 1898272706708344027}
-  text: 3 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at tincidunt
-    leo, quis gravida metus. Donec metus arcu, sagittis sed viverra ut, placerat
-    nec urna. Donec facilisis erat metus, vel imperdiet velit interdum vel. Donec
-    imperdiet accumsan purus a accumsan. Duis mollis orci ex, efficitur aliquam ligula
-    malesuada in. Pellentesque sit amet tortor quis ipsum malesuada consequat vel
-    in est. Duis dapibus mollis neque vel ornare. Sed iaculis leo non libero pretium,
-    feugiat consequat lacus accumsan. In egestas pulvinar lacus, lacinia hendrerit
-    odio scelerisque sed. Sed purus lectus, dapibus sit amet mollis at, viverra non
-    metus.   Fusce efficitur tempor enim, eget facilisis nibh aliquam sit amet. Suspendisse
-    id congue augue. Aenean ultrices tortor vel dignissim vehicula. Pellentesque
-    habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-    Phasellus non tellus eget magna ultrices placerat in nec neque. Class aptent
-    taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-    Praesent porta ante a nunc euismod laoreet sed eu elit. Proin sit amet cursus
-    dui, sit amet facilisis sapien. Vivamus semper arcu in enim euismod auctor. In
-    non arcu vel turpis accumsan pretium. Duis in rhoncus est.   Fusce ullamcorper
-    sodales efficitur. Vivamus aliquam, elit ut tincidunt pellentesque, lorem velit
-    suscipit nibh, quis consequat quam elit vel orci. Nunc nunc lectus, tincidunt
-    nec elit lacinia, condimentum aliquet libero. Morbi vehicula quis dui a dapibus.
-    Curabitur elit augue, ultricies ac tempor eu, vulputate et ligula. Quisque et
-    justo aliquam, porta ligula et, auctor urna. Interdum et malesuada fames ac ante
-    ipsum primis in faucibus. Maecenas pulvinar enim felis, ac interdum turpis tristique
-    bibendum. Proin volutpat nulla risus, ut porta arcu vulputate vel. Cras volutpat
-    mauris ac bibendum egestas. Sed id mauris gravida, scelerisque lorem eu, faucibus
-    purus. Sed tincidunt nibh et nulla dignissim gravida. Aenean eget elit in nulla
-    tempus aliquet.
+  text: "A muta\xE7\xE3o copia o individuo da popula\xE7\xE3o anterior e modifica
+    um pouco os seus cromossomos.\r\n\r\nPodemos ter a muta\xE7\xE3o fixa onde um
+    n\xFAmero exato de cromossomos ser\xE3o modificados, a muta\xE7\xE3o aleat\xF3ria
+    onde um n\xFAmero aleat\xF3rio de cromossomos ser\xE3o modificados e a muta\xE7\xE3o
+    completa onde todos os cromossomos ser\xE3o modificados, gerando um individuo
+    completamente novo.\r\n"
 --- !u!1 &1898272706941555766
 GameObject:
   m_ObjectHideFlags: 0
@@ -6681,32 +6646,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoTxt: {fileID: 1898272706708344027}
-  text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at tincidunt
-    leo, quis gravida metus. Donec metus arcu, sagittis sed viverra ut, placerat
-    nec urna. Donec facilisis erat metus, vel imperdiet velit interdum vel. Donec
-    imperdiet accumsan purus a accumsan. Duis mollis orci ex, efficitur aliquam ligula
-    malesuada in. Pellentesque sit amet tortor quis ipsum malesuada consequat vel
-    in est. Duis dapibus mollis neque vel ornare. Sed iaculis leo non libero pretium,
-    feugiat consequat lacus accumsan. In egestas pulvinar lacus, lacinia hendrerit
-    odio scelerisque sed. Sed purus lectus, dapibus sit amet mollis at, viverra non
-    metus.   Fusce efficitur tempor enim, eget facilisis nibh aliquam sit amet. Suspendisse
-    id congue augue. Aenean ultrices tortor vel dignissim vehicula. Pellentesque
-    habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-    Phasellus non tellus eget magna ultrices placerat in nec neque. Class aptent
-    taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-    Praesent porta ante a nunc euismod laoreet sed eu elit. Proin sit amet cursus
-    dui, sit amet facilisis sapien. Vivamus semper arcu in enim euismod auctor. In
-    non arcu vel turpis accumsan pretium. Duis in rhoncus est.   Fusce ullamcorper
-    sodales efficitur. Vivamus aliquam, elit ut tincidunt pellentesque, lorem velit
-    suscipit nibh, quis consequat quam elit vel orci. Nunc nunc lectus, tincidunt
-    nec elit lacinia, condimentum aliquet libero. Morbi vehicula quis dui a dapibus.
-    Curabitur elit augue, ultricies ac tempor eu, vulputate et ligula. Quisque et
-    justo aliquam, porta ligula et, auctor urna. Interdum et malesuada fames ac ante
-    ipsum primis in faucibus. Maecenas pulvinar enim felis, ac interdum turpis tristique
-    bibendum. Proin volutpat nulla risus, ut porta arcu vulputate vel. Cras volutpat
-    mauris ac bibendum egestas. Sed id mauris gravida, scelerisque lorem eu, faucibus
-    purus. Sed tincidunt nibh et nulla dignissim gravida. Aenean eget elit in nulla
-    tempus aliquet.
+  text: "Uma popula\xE7\xE3o \xE9 o conjunto dos indiv\xEDduos. Cada individuo \xE9
+    representado pelos seus cromossomos. Em geral, podemos representar uma popula\xE7\xE3o
+    como sendo vetor de indiv\xEDduos.\r\n\r\nEm cada itera\xE7\xE3o do algoritmo
+    gen\xE9tico, uma nova popula\xE7\xE3o ser\xE1 gerada a par\x02tir do atual, atrav\xE9s
+    do chamado operador gen\xE9tico. A forma como gera a nova popula\xE7\xE3o varia
+    de caso por caso, devendo escolher a forma mais apropriada para cada problema.\r\n"
 --- !u!1 &1898272707070641963
 GameObject:
   m_ObjectHideFlags: 0
@@ -8248,9 +8193,11 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: "Sele\xE7\xE3o dos melhores"
+    - m_Text: Truncamento
       m_Image: {fileID: 0}
-    - m_Text: "Sele\xE7\xE3o aleat\xF3ria"
+    - m_Text: Roleta
+      m_Image: {fileID: 0}
+    - m_Text: Torneio
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -10236,32 +10183,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoTxt: {fileID: 1898272706708344027}
-  text: 6 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at tincidunt
-    leo, quis gravida metus. Donec metus arcu, sagittis sed viverra ut, placerat
-    nec urna. Donec facilisis erat metus, vel imperdiet velit interdum vel. Donec
-    imperdiet accumsan purus a accumsan. Duis mollis orci ex, efficitur aliquam ligula
-    malesuada in. Pellentesque sit amet tortor quis ipsum malesuada consequat vel
-    in est. Duis dapibus mollis neque vel ornare. Sed iaculis leo non libero pretium,
-    feugiat consequat lacus accumsan. In egestas pulvinar lacus, lacinia hendrerit
-    odio scelerisque sed. Sed purus lectus, dapibus sit amet mollis at, viverra non
-    metus.   Fusce efficitur tempor enim, eget facilisis nibh aliquam sit amet. Suspendisse
-    id congue augue. Aenean ultrices tortor vel dignissim vehicula. Pellentesque
-    habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-    Phasellus non tellus eget magna ultrices placerat in nec neque. Class aptent
-    taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-    Praesent porta ante a nunc euismod laoreet sed eu elit. Proin sit amet cursus
-    dui, sit amet facilisis sapien. Vivamus semper arcu in enim euismod auctor. In
-    non arcu vel turpis accumsan pretium. Duis in rhoncus est.   Fusce ullamcorper
-    sodales efficitur. Vivamus aliquam, elit ut tincidunt pellentesque, lorem velit
-    suscipit nibh, quis consequat quam elit vel orci. Nunc nunc lectus, tincidunt
-    nec elit lacinia, condimentum aliquet libero. Morbi vehicula quis dui a dapibus.
-    Curabitur elit augue, ultricies ac tempor eu, vulputate et ligula. Quisque et
-    justo aliquam, porta ligula et, auctor urna. Interdum et malesuada fames ac ante
-    ipsum primis in faucibus. Maecenas pulvinar enim felis, ac interdum turpis tristique
-    bibendum. Proin volutpat nulla risus, ut porta arcu vulputate vel. Cras volutpat
-    mauris ac bibendum egestas. Sed id mauris gravida, scelerisque lorem eu, faucibus
-    purus. Sed tincidunt nibh et nulla dignissim gravida. Aenean eget elit in nulla
-    tempus aliquet.
+  text: "Alguns indiv\xEDduos do come\xE7o da lista entra para nova popula\xE7\xE3o.
+    O elitismo \xE9 essencial para o caso generacional a fim de evitar que a popula\xE7\xE3o
+    piore.\n"
 --- !u!1 &1898272707660163174
 GameObject:
   m_ObjectHideFlags: 0
@@ -11788,32 +11712,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoTxt: {fileID: 1898272706708344027}
-  text: 1- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at tincidunt
-    leo, quis gravida metus. Donec metus arcu, sagittis sed viverra ut, placerat
-    nec urna. Donec facilisis erat metus, vel imperdiet velit interdum vel. Donec
-    imperdiet accumsan purus a accumsan. Duis mollis orci ex, efficitur aliquam ligula
-    malesuada in. Pellentesque sit amet tortor quis ipsum malesuada consequat vel
-    in est. Duis dapibus mollis neque vel ornare. Sed iaculis leo non libero pretium,
-    feugiat consequat lacus accumsan. In egestas pulvinar lacus, lacinia hendrerit
-    odio scelerisque sed. Sed purus lectus, dapibus sit amet mollis at, viverra non
-    metus.   Fusce efficitur tempor enim, eget facilisis nibh aliquam sit amet. Suspendisse
-    id congue augue. Aenean ultrices tortor vel dignissim vehicula. Pellentesque
-    habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-    Phasellus non tellus eget magna ultrices placerat in nec neque. Class aptent
-    taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-    Praesent porta ante a nunc euismod laoreet sed eu elit. Proin sit amet cursus
-    dui, sit amet facilisis sapien. Vivamus semper arcu in enim euismod auctor. In
-    non arcu vel turpis accumsan pretium. Duis in rhoncus est.   Fusce ullamcorper
-    sodales efficitur. Vivamus aliquam, elit ut tincidunt pellentesque, lorem velit
-    suscipit nibh, quis consequat quam elit vel orci. Nunc nunc lectus, tincidunt
-    nec elit lacinia, condimentum aliquet libero. Morbi vehicula quis dui a dapibus.
-    Curabitur elit augue, ultricies ac tempor eu, vulputate et ligula. Quisque et
-    justo aliquam, porta ligula et, auctor urna. Interdum et malesuada fames ac ante
-    ipsum primis in faucibus. Maecenas pulvinar enim felis, ac interdum turpis tristique
-    bibendum. Proin volutpat nulla risus, ut porta arcu vulputate vel. Cras volutpat
-    mauris ac bibendum egestas. Sed id mauris gravida, scelerisque lorem eu, faucibus
-    purus. Sed tincidunt nibh et nulla dignissim gravida. Aenean eget elit in nulla
-    tempus aliquet.
+  text: "A reprodu\xE7\xE3o, tradicionalmente, \xE9 dividida em tr\xEAs etapas: acasalamento,
+    recombina\xE7\xE3o e muta\xE7\xE3o. O acasalamento \xE9 a escolha de dois indiv\xEDduos
+    para se reproduzirem (geralmente gerando dois descendentes para manter o tamanho
+    populacional). A recombina\xE7\xE3o, ou crossing-over \xE9 um processo que imita
+    o processo biol\xF3gico hom\xF4nimo na reprodu\xE7\xE3o sexuada: os descendentes
+    recebem em seu c\xF3digo gen\xE9tico parte do c\xF3digo gen\xE9tico do pai e
+    parte do c\xF3digo da m\xE3e. Esta recombina\xE7\xE3o garante que os melhores
+    indiv\xEDduos sejam capazes de trocar entre si as informa\xE7\xF5es que os levam
+    a ser mais aptos a sobreviver, e assim gerar descendentes ainda mais aptos. Por
+    \xFAltimo vem as muta\xE7\xF5es, que s\xE3o feitas com probabilidade a mais baixa
+    poss\xEDvel, e tem como objetivo permitir maior variabilidade gen\xE9tica na
+    popula\xE7\xE3o, impedindo que a busca fique estagnada em um m\xEDnimo local.\r\n"
 --- !u!1 &1898272707952108908
 GameObject:
   m_ObjectHideFlags: 0
@@ -13458,32 +13368,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoTxt: {fileID: 1898272706708344027}
-  text: 2 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at tincidunt
-    leo, quis gravida metus. Donec metus arcu, sagittis sed viverra ut, placerat
-    nec urna. Donec facilisis erat metus, vel imperdiet velit interdum vel. Donec
-    imperdiet accumsan purus a accumsan. Duis mollis orci ex, efficitur aliquam ligula
-    malesuada in. Pellentesque sit amet tortor quis ipsum malesuada consequat vel
-    in est. Duis dapibus mollis neque vel ornare. Sed iaculis leo non libero pretium,
-    feugiat consequat lacus accumsan. In egestas pulvinar lacus, lacinia hendrerit
-    odio scelerisque sed. Sed purus lectus, dapibus sit amet mollis at, viverra non
-    metus.   Fusce efficitur tempor enim, eget facilisis nibh aliquam sit amet. Suspendisse
-    id congue augue. Aenean ultrices tortor vel dignissim vehicula. Pellentesque
-    habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-    Phasellus non tellus eget magna ultrices placerat in nec neque. Class aptent
-    taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-    Praesent porta ante a nunc euismod laoreet sed eu elit. Proin sit amet cursus
-    dui, sit amet facilisis sapien. Vivamus semper arcu in enim euismod auctor. In
-    non arcu vel turpis accumsan pretium. Duis in rhoncus est.   Fusce ullamcorper
-    sodales efficitur. Vivamus aliquam, elit ut tincidunt pellentesque, lorem velit
-    suscipit nibh, quis consequat quam elit vel orci. Nunc nunc lectus, tincidunt
-    nec elit lacinia, condimentum aliquet libero. Morbi vehicula quis dui a dapibus.
-    Curabitur elit augue, ultricies ac tempor eu, vulputate et ligula. Quisque et
-    justo aliquam, porta ligula et, auctor urna. Interdum et malesuada fames ac ante
-    ipsum primis in faucibus. Maecenas pulvinar enim felis, ac interdum turpis tristique
-    bibendum. Proin volutpat nulla risus, ut porta arcu vulputate vel. Cras volutpat
-    mauris ac bibendum egestas. Sed id mauris gravida, scelerisque lorem eu, faucibus
-    purus. Sed tincidunt nibh et nulla dignissim gravida. Aenean eget elit in nulla
-    tempus aliquet.
+  text: "A muta\xE7\xE3o copia o individuo da popula\xE7\xE3o anterior e modifica
+    um pouco os seus cromossomos.\r\n\r\nA chance de muta\xE7\xE3o \xE9 a chance,
+    em porcentagem, de cada individuo sofrer uma muta\xE7\xE3o durante a sua reprodu\xE7\xE3o."
 --- !u!1 &1898272708218433445
 GameObject:
   m_ObjectHideFlags: 0
@@ -13781,32 +13668,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoTxt: {fileID: 1898272706708344027}
-  text: 5 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at tincidunt
-    leo, quis gravida metus. Donec metus arcu, sagittis sed viverra ut, placerat
-    nec urna. Donec facilisis erat metus, vel imperdiet velit interdum vel. Donec
-    imperdiet accumsan purus a accumsan. Duis mollis orci ex, efficitur aliquam ligula
-    malesuada in. Pellentesque sit amet tortor quis ipsum malesuada consequat vel
-    in est. Duis dapibus mollis neque vel ornare. Sed iaculis leo non libero pretium,
-    feugiat consequat lacus accumsan. In egestas pulvinar lacus, lacinia hendrerit
-    odio scelerisque sed. Sed purus lectus, dapibus sit amet mollis at, viverra non
-    metus.   Fusce efficitur tempor enim, eget facilisis nibh aliquam sit amet. Suspendisse
-    id congue augue. Aenean ultrices tortor vel dignissim vehicula. Pellentesque
-    habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-    Phasellus non tellus eget magna ultrices placerat in nec neque. Class aptent
-    taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-    Praesent porta ante a nunc euismod laoreet sed eu elit. Proin sit amet cursus
-    dui, sit amet facilisis sapien. Vivamus semper arcu in enim euismod auctor. In
-    non arcu vel turpis accumsan pretium. Duis in rhoncus est.   Fusce ullamcorper
-    sodales efficitur. Vivamus aliquam, elit ut tincidunt pellentesque, lorem velit
-    suscipit nibh, quis consequat quam elit vel orci. Nunc nunc lectus, tincidunt
-    nec elit lacinia, condimentum aliquet libero. Morbi vehicula quis dui a dapibus.
-    Curabitur elit augue, ultricies ac tempor eu, vulputate et ligula. Quisque et
-    justo aliquam, porta ligula et, auctor urna. Interdum et malesuada fames ac ante
-    ipsum primis in faucibus. Maecenas pulvinar enim felis, ac interdum turpis tristique
-    bibendum. Proin volutpat nulla risus, ut porta arcu vulputate vel. Cras volutpat
-    mauris ac bibendum egestas. Sed id mauris gravida, scelerisque lorem eu, faucibus
-    purus. Sed tincidunt nibh et nulla dignissim gravida. Aenean eget elit in nulla
-    tempus aliquet.
+  text: "Uma popula\xE7\xE3o \xE9 o conjunto dos indiv\xEDduos. Cada individuo \xE9
+    representado pelos seus cromossomos. Em geral, podemos representar uma popula\xE7\xE3o
+    como sendo vetor de indiv\xEDduos.\r\n\r\nEm cada itera\xE7\xE3o do algoritmo
+    gen\xE9tico, uma nova popula\xE7\xE3o ser\xE1 gerada a par\x02tir do atual, atrav\xE9s
+    do chamado operador gen\xE9tico. A forma como gera a nova popula\xE7\xE3o varia
+    de caso por caso, devendo escolher a forma mais apropriada para cada problema.\r\n"
 --- !u!1 &2082080762253212945
 GameObject:
   m_ObjectHideFlags: 0
@@ -15044,6 +14911,155 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &3272578769356625348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3981885862111271116}
+  - component: {fileID: 4796646179601507178}
+  - component: {fileID: 4864148451029532986}
+  - component: {fileID: 7230797394723284665}
+  - component: {fileID: 5719786979225809716}
+  m_Layer: 5
+  m_Name: info Buttom (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3981885862111271116
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3272578769356625348}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7485101524666499830}
+  m_Father: {fileID: 5694163831561008655}
+  m_RootOrder: 23
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -71, y: -716}
+  m_SizeDelta: {x: 45, y: 45}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4796646179601507178
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3272578769356625348}
+  m_CullTransparentMesh: 0
+--- !u!114 &4864148451029532986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3272578769356625348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 572955b2fc805584aaa343215e806606, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7230797394723284665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3272578769356625348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 4864148451029532986}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5719786979225809716}
+        m_TargetAssemblyTypeName: InfoTextSelector, Assembly-CSharp
+        m_MethodName: SetThisText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5719786979225809716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3272578769356625348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276bfc0f270e87d43af3707acda221c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  infoTxt: {fileID: 1898272706708344027}
+  text: "A pontua\xE7\xE3o de complexidade descreve a complexidade do seu algoritmo,
+    ou seja, quanto mais m\xE9todos e recursos complexos forem adicionados ao algoritmo,
+    maior ser\xE1 a sua pontua\xE7\xE3o.\r\n\r\nCuidado com sua pontua\xE7\xE3o pois
+    caso ela seja muito alta voc\xEA n\xE3o cumprir\xE1 uma das miss\xF5es."
 --- !u!1 &3364774926629706178
 GameObject:
   m_ObjectHideFlags: 0
@@ -15886,6 +15902,158 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   music: {fileID: 0}
   icon: {fileID: 5958409312024881148}
+--- !u!1 &5497983105204899167
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7485101524666499830}
+  - component: {fileID: 7460715341084740617}
+  - component: {fileID: 2255272438763346872}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7485101524666499830
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5497983105204899167}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3981885862111271116}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7460715341084740617
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5497983105204899167}
+  m_CullTransparentMesh: 0
+--- !u!114 &2255272438763346872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5497983105204899167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: '?'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontSize: 30
+  m_fontSizeBase: 30
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_isAlignmentEnumConverted: 1
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_firstOverflowCharacterIndex: -1
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_isTextTruncated: 0
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_ignoreCulling: 1
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 1
+  m_firstVisibleCharacter: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_textInfo:
+    textComponent: {fileID: 2255272438763346872}
+    characterCount: 1
+    spriteCount: 0
+    spaceCount: 0
+    wordCount: 1
+    linkCount: 0
+    lineCount: 1
+    pageCount: 1
+    materialCount: 1
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &5694163829602818327
 GameObject:
   m_ObjectHideFlags: 0
@@ -17481,6 +17649,7 @@ RectTransform:
   - {fileID: 1898272707067617649}
   - {fileID: 1898272706701872121}
   - {fileID: 1898272706159400038}
+  - {fileID: 3981885862111271116}
   m_Father: {fileID: 5694163831453790451}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18164,7 +18333,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8243149544330639249
 RectTransform:
   m_ObjectHideFlags: 0

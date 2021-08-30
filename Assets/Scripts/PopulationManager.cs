@@ -55,6 +55,7 @@ public class PopulationManager : MonoBehaviour {
 
     public GameObject prefab;
     public GameInfoManager gameInfoManager;
+    public GameObject rankButton;
     public List<GameObject> population = new List<GameObject> ();
     private static int currentGeneration = 0;
 
@@ -70,7 +71,7 @@ public class PopulationManager : MonoBehaviour {
                 winners++;
             }
         }
-        bool m1 = winners >= (populationSize / 50);
+        bool m1 = winners >= (populationSize / 2);
         bool m2 = currentGeneration < 10;
         bool m3 = complexityPoints < 700;
         winner.UpdateWinnersWindow(m1, m2, m3);
@@ -128,6 +129,7 @@ public class PopulationManager : MonoBehaviour {
         }
         GenerationsViewManager.uiNeedUpdate = true;
         population.Clear ();
+        rankButton.SetActive (true);
         if(selectionOpt == 1){
             SelectionByFittest(sortedList);
         } else {

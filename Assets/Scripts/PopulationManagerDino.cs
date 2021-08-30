@@ -54,6 +54,7 @@ public class PopulationManagerDino : MonoBehaviour {
     public static float bestFitness;
     public GameObject prefab;
     public GameInfoManager gameInfoManager;
+    public GameObject rankButton;
     public List<GameObject> population = new List<GameObject> ();
     private static int currentGeneration = 0;
     private void Update() {
@@ -132,6 +133,7 @@ public class PopulationManagerDino : MonoBehaviour {
         }
         GenerationsViewManager.uiNeedUpdate = true;
         population.Clear ();
+        rankButton.SetActive (true);
         if(selectionOpt == 1){
             SelectionByFittest(sortedList);
         } else {

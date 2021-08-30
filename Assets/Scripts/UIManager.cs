@@ -51,7 +51,7 @@ public class UIManager : MonoBehaviour
                 UpdateShipUi();
         
         } else {
-            if (SceneManager.GetActiveScene ().name == "Platform"){
+            if (SceneManager.GetActiveScene ().name == "dinoRun"){
                 SetDinoMutationOption();
                 SetDinoBreedOption();
                 SetDinoSelectionOption();
