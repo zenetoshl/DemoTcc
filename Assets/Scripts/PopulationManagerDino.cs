@@ -60,11 +60,9 @@ public class PopulationManagerDino : MonoBehaviour {
     public int maxGenStar = 10;
     public int maxComplexityStar = 600;
     private static int currentGeneration = 0;
-    private void Update() {
-        if (Input.GetKeyDown("space"))
-        {
-            StartGame();
-        }
+
+    private void Start() {
+        GetNewPointsCount();
     }
 
     private void CheckWin(List<GameObject> pop){
@@ -81,7 +79,7 @@ public class PopulationManagerDino : MonoBehaviour {
     }
 
     private void GetNewPointsCount(){
-        complexityPoints = (mutationPercentage * 5) + (selectionOpt * 10) + (elite * 20) + (populationSize * 3) + (DNA.mutationOpt * 10) + (DNA.breedOpt * 10);
+        complexityPoints = (mutationPercentage * 5) + (selectionOpt * 15) + (elite * 10) + (populationSize * 5) + (DNA.mutationOpt * 10) + (DNA.breedOpt * 15);
         pointsText.text = complexityPoints + " PTS";
     }
 

@@ -3159,27 +3159,40 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1898272706708344020, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -515.14996
+      value: -515.15
       objectReference: {fileID: 0}
     - target: {fileID: 1898272706708344027, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 341
       objectReference: {fileID: 0}
     - target: {fileID: 1898272706708344027, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 0
+      value: 63
       objectReference: {fileID: 0}
     - target: {fileID: 1898272706708344027, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 1898272706708344027, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1898272706708344027, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898272706708344027, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
+      propertyPath: m_text
+      value: "O objetivo dessa fase \xE9 fazer com que as naves coletem as orbs espalhadas
+        pelo mapa.\r\n\r\n\r\n- Miss\xE3o prim\xE1ria: fazer com que ao menos 50%
+        das naves de uma gera\xE7\xE3o coletem 5 orbs.\r\n\r\n- Miss\xE3o secund\xE1ria
+        1: Cumprir a miss\xE3o prim\xE1ria em menos de 15 gera\xE7\xF5es.\r\n\r\n-
+        Miss\xE3o secund\xE1ria 2: Cumprir a miss\xE3o prim\xE1ria com uma complexidade
+        menor que 500."
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898272706708344027, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1898272706710579952, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
       propertyPath: m_IsActive
@@ -3296,6 +3309,15 @@ PrefabInstance:
     - target: {fileID: 1898272707038844775, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898272707067617653, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
+      propertyPath: text
+      value: "O objetivo dessa fase \xE9 fazer com que as naves coletem as orbs espalhadas
+        pelo mapa.\r\n\r\n\r\n- Miss\xE3o prim\xE1ria: fazer com que ao menos 50%
+        das naves de uma gera\xE7\xE3o coletem 5 orbs.\r\n\r\n- Miss\xE3o secund\xE1ria
+        1: Cumprir a miss\xE3o prim\xE1ria em menos de 15 gera\xE7\xF5es.\r\n\r\n-
+        Miss\xE3o secund\xE1ria 2: Cumprir a miss\xE3o prim\xE1ria com uma complexidade
+        menor que 500."
       objectReference: {fileID: 0}
     - target: {fileID: 1898272707124402871, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
       propertyPath: m_textInfo.characterCount

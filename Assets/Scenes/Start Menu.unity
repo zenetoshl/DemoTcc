@@ -2192,7 +2192,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: platform
+          m_StringArgument: labirinto 2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &640587534
@@ -2807,7 +2807,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: platform
+          m_StringArgument: labirinto
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &795022546
@@ -3535,7 +3535,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: platform
+          m_StringArgument: ships
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1050934419
@@ -4898,7 +4898,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: platform
+          m_StringArgument: labirinto 1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1584892040
@@ -5265,7 +5265,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: platform
+          m_StringArgument: ships 1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1698488942
@@ -6115,7 +6115,7 @@ MonoBehaviour:
   - {fileID: 1050934421}
   - {fileID: 1698488944}
   - {fileID: 1910888858}
-  limits: 000000000100000004000000
+  limits: 000000000400000004000000
 --- !u!224 &1890570187
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6231,7 +6231,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: platform
+          m_StringArgument: ships 2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1910888860

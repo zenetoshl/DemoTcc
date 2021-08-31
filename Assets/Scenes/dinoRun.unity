@@ -2671,7 +2671,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6269f43ea314bf498882036d1ba02a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  outerLeft: -10
+  outerRight: 5
+  outerUp: 5
+  outerDown: 4
 --- !u!114 &811275079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2840,8 +2843,8 @@ MonoBehaviour:
   gameInfoManager: {fileID: 660535150}
   rankButton: {fileID: 1898272706517739892}
   population: []
-  maxGenStar: 10
-  maxComplexityStar: 600
+  maxGenStar: 15
+  maxComplexityStar: 500
 --- !u!4 &933165022
 Transform:
   m_ObjectHideFlags: 0
@@ -3817,7 +3820,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1898272706708344020, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -515.15015
+      value: -515.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898272706708344027, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
+      propertyPath: m_text
+      value: "O objetivo dessa fase \xE9 fazer os dinossauros chegarem ao final da
+        plataforma.\r\n\r\n\r\n- Miss\xE3o prim\xE1ria: fazer com que 50% dos dinossauros
+        de uma gera\xE7\xE3o cheguem ao final.\r\n\r\n- Miss\xE3o secund\xE1ria 1:
+        Cumprir a miss\xE3o prim\xE1ria em menos de 15 gera\xE7\xF5es.\r\n\r\n- Miss\xE3o
+        secund\xE1ria 2: Cumprir a miss\xE3o prim\xE1ria com uma complexidade menor
+        que 500."
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898272706708344027, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898272706708344027, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 333
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898272706708344027, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 58
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898272706708344027, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898272706708344027, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1898272706710579952, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
       propertyPath: m_IsActive
@@ -3842,6 +3874,15 @@ PrefabInstance:
     - target: {fileID: 1898272706966707743, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898272707067617653, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
+      propertyPath: text
+      value: "O objetivo dessa fase \xE9 fazer os dinossauros chegarem ao final da
+        plataforma.\r\n\r\n\r\n- Miss\xE3o prim\xE1ria: fazer com que 50% dos dinossauros
+        de uma gera\xE7\xE3o cheguem ao final.\r\n\r\n- Miss\xE3o secund\xE1ria 1:
+        Cumprir a miss\xE3o prim\xE1ria em menos de 15 gera\xE7\xF5es.\r\n\r\n- Miss\xE3o
+        secund\xE1ria 2: Cumprir a miss\xE3o prim\xE1ria com uma complexidade menor
+        que 500."
       objectReference: {fileID: 0}
     - target: {fileID: 1898272707283929836, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
       propertyPath: m_SizeDelta.y

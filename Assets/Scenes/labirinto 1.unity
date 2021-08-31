@@ -4290,8 +4290,8 @@ MonoBehaviour:
   gameInfoManager: {fileID: 1647085616}
   rankButton: {fileID: 445801346}
   population: []
-  maxGenStar: 10
-  maxComplexityStar: 600
+  maxGenStar: 12
+  maxComplexityStar: 450
 --- !u!4 &191553042
 Transform:
   m_ObjectHideFlags: 0
@@ -12287,27 +12287,40 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1898272706708344020, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -515.15015
+      value: -515.15
       objectReference: {fileID: 0}
     - target: {fileID: 1898272706708344027, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 335
       objectReference: {fileID: 0}
     - target: {fileID: 1898272706708344027, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 0
+      value: 59
       objectReference: {fileID: 0}
     - target: {fileID: 1898272706708344027, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 56
       objectReference: {fileID: 0}
     - target: {fileID: 1898272706708344027, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1898272706708344027, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898272706708344027, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
+      propertyPath: m_text
+      value: "O objetivo dessa fase \xE9 fazer os individuos encontrarem a saida
+        do labirinto.\r\n\r\n\r\n- Miss\xE3o prim\xE1ria: fazer com que 50% dos individuos
+        de uma gera\xE7\xE3o cheguem ate a saida.\r\n\r\n- Miss\xE3o secund\xE1ria
+        1: Cumprir a miss\xE3o prim\xE1ria em menos de 12 gera\xE7\xF5es.\r\n\r\n-
+        Miss\xE3o secund\xE1ria 2: Cumprir a miss\xE3o prim\xE1ria com uma complexidade
+        menor que 450."
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898272706708344027, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1898272706710579952, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
       propertyPath: m_IsActive
@@ -12417,6 +12430,15 @@ PrefabInstance:
     - target: {fileID: 1898272707038844775, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1898272707067617653, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
+      propertyPath: text
+      value: "O objetivo dessa fase \xE9 fazer os individuos encontrarem a saida
+        do labirinto.\r\n\r\n\r\n- Miss\xE3o prim\xE1ria: fazer com que 50% dos individuos
+        de uma gera\xE7\xE3o cheguem ate a saida.\r\n\r\n- Miss\xE3o secund\xE1ria
+        1: Cumprir a miss\xE3o prim\xE1ria em menos de 12 gera\xE7\xF5es.\r\n\r\n-
+        Miss\xE3o secund\xE1ria 2: Cumprir a miss\xE3o prim\xE1ria com uma complexidade
+        menor que 450."
       objectReference: {fileID: 0}
     - target: {fileID: 1898272707124402871, guid: c0cac2e3e0460b14bab4b67f202ee622, type: 3}
       propertyPath: m_textInfo.characterCount
