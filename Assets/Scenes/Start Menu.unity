@@ -6115,7 +6115,7 @@ MonoBehaviour:
   - {fileID: 1050934421}
   - {fileID: 1698488944}
   - {fileID: 1910888858}
-  limits: 000000000400000004000000
+  limits: 000000000100000004000000
 --- !u!224 &1890570187
 RectTransform:
   m_ObjectHideFlags: 0

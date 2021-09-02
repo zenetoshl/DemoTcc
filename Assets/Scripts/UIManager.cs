@@ -44,14 +44,14 @@ public class UIManager : MonoBehaviour
     }
 
     private void Start() {
-        if(SceneManager.GetActiveScene ().name == "ships"){
+        if(SceneManager.GetActiveScene ().name == "ships" || SceneManager.GetActiveScene ().name == "ships 1" || SceneManager.GetActiveScene ().name == "ships 2"){
                 SetShipsSelectionOption();
                 SetShipsMutationOption();
                 SetShipsBreedOption();
                 UpdateShipUi();
         
         } else {
-            if (SceneManager.GetActiveScene ().name == "dinoRun"){
+            if (SceneManager.GetActiveScene ().name == "dinoRun" || SceneManager.GetActiveScene ().name == "dinoRun 1" || SceneManager.GetActiveScene ().name == "dinoRun 2"){
                 SetDinoMutationOption();
                 SetDinoBreedOption();
                 SetDinoSelectionOption();

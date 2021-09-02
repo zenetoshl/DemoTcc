@@ -66,7 +66,11 @@ public class ShipController : MonoBehaviour
 
     private void Die(){
         alive = false;
+        fitness = CalculateFitness1();
         PopulationManagerShip.populationDead++;
+        if(PopulationManagerShip.instance.minOrbs <= goalsId.Count){
+            winner = true;
+        }
         if(winner){
             PopulationManagerShip.noPenalty++;
         }
@@ -87,8 +91,6 @@ public class ShipController : MonoBehaviour
             return;
         } else
         if(other.gameObject.tag == "win") {
-            winner = true;
-            Debug.Log("passei aqui");
             int id = int.Parse(other.gameObject.name);
             if(!goalsId.Contains(id)){
                 goalsId.Add(id);
@@ -123,16 +125,16 @@ public class ShipController : MonoBehaviour
             case 1:
                 return CalculateFitness1();
             case 2:
-                return CalculateFitness2();
+                return CalculateFitness1();
             case 3:
-                return CalculateFitness3();
+                return CalculateFitness1();
             default:
                 return CalculateFitness1();
         }
     }
 
     public float CalculateFitness1(){
-        return (distanceWalked * goalsId.Count);
+        return (goalsId.Count);
     }
 
     public float CalculateFitness2(){

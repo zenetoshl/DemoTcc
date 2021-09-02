@@ -46,7 +46,7 @@ public class PopulationManagerShip : MonoBehaviour{
     public static int noPenalty = 0;
     public static int populationAlive = 0;
     public static int populationSize = 50;
-    public static int elite = 10;
+    public static int elite = 2;
     public static int mutationPercentage = 1;
     public static float trialTime = 15.0f;
     public static int selectionOpt = 1;
@@ -59,8 +59,9 @@ public class PopulationManagerShip : MonoBehaviour{
     public List<GameObject> population = new List<GameObject> ();
     private static int currentGeneration = 0;
 
-    public int maxGenStar = 10;
+    public int maxGenStar = 15;
     public int maxComplexityStar = 600;
+    public int minOrbs = 2;
 
     private void Start() {
         GetNewPointsCount();
@@ -78,7 +79,8 @@ public class PopulationManagerShip : MonoBehaviour{
                 winners++;
             }
         }
-        bool m1 = winners >= (populationSize / 50);
+        Debug.LogWarning(winners);
+        bool m1 = winners >= (populationSize / 2);
         bool m2 = currentGeneration < maxGenStar;
         bool m3 = complexityPoints < maxComplexityStar;
         winner.UpdateWinnersWindow(m1, m2, m3);
@@ -190,6 +192,7 @@ public class PopulationManagerShip : MonoBehaviour{
         if(started){
             elapsed += Time.deltaTime;
             if (populationDead >= populationSize) {
+                CheckWin(population);
                 BreedNewPopulation ();
                 elapsed = 0.0f;
                 noPenalty = 0;

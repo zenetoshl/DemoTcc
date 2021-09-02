@@ -29,4 +29,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/labirinto 2.unity
     guid: 19e0020139875d0408ad4b382766e774
+  - enabled: 1
+    path: Assets/Scenes/ships 1.unity
+    guid: 91f66518e65ee3b41890805c8c0dce18
+  - enabled: 1
+    path: Assets/Scenes/ships 2.unity
+    guid: e73da81387e3d814fbf3728540c19c95
   m_configObjects: {}
