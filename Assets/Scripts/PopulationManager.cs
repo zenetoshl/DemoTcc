@@ -140,7 +140,11 @@ public class PopulationManager : MonoBehaviour {
         if(selectionOpt == 1){
             SelectionByFittest(sortedList);
         } else {
-            RandomSelection(sortedList);
+            if(selectionOpt == 2){
+                RandomSelection(sortedList);
+            } else {
+                SelectionByContest(sortedList);
+            }
         }
         foreach (GameObject obj in sortedList) {
             Destroy (obj);
@@ -179,6 +183,28 @@ public class PopulationManager : MonoBehaviour {
             }
             else {
                 population.Add (Breed (sorted[i - elite], sorted[(i - elite + 1) % sorted.Count]));
+            }
+            i++;
+        }
+    }
+
+    private void SelectionByContest(List<GameObject> sorted){
+        int i = 0;
+        List<GameObject> selected = new List<GameObject> ();
+        for (int k = 0; k < populationSize / 2; k++){
+            List<GameObject> g1 = new List<GameObject> ();
+            for(int j = 0; j < populationSize / 10; j++){
+                g1.Add (sorted[Random.Range (0, sorted.Count - 1)]);
+            }
+            List<GameObject> sortedList = g1.OrderBy (o => -o.GetComponent<Brain>().CalculateFitness()).ToList ();
+            selected.Add(sortedList[0]);
+        }
+        while(population.Count < populationSize){
+            if(i < elite){
+                population.Add (Breed (sorted[i], sorted[i]));
+            }
+            else {
+                population.Add (Breed (selected[(i - elite) % selected.Count], selected[(i - elite + 1) % selected.Count]));
             }
             i++;
         }
@@ -224,7 +250,7 @@ public class PopulationManager : MonoBehaviour {
     }
 
     public void SetSelectionOpt(int opt){
-        if(opt > 2 || opt < 1){
+        if(opt > 3 || opt < 1){
             opt = 1;
         }
         selectionOpt = opt;

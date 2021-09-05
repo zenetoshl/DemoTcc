@@ -10,7 +10,7 @@ public class GameUIManager : MonoBehaviour
     public GameObject gameMenu;
     public GameObject gameInfo;
     public GameObject showInfoButton;
-    public bool showInfo = false;
+    public bool showInfo = true;
     
     public void SetGameUIState(int state) {
         switch (state)

@@ -148,6 +148,7 @@ public class DNA {
     }
 
     private string breedNames(string nameParent1, string nameParent2){
+        if(nameParent1 == nameParent2) return nameParent1;
         return NameManger.instance.firstName + " " + nameParent1.Split(' ')[1] + " " + nameParent2.Split(' ')[2];
     }
 }
