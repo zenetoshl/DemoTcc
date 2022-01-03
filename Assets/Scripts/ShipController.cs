@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class ShipController : MonoBehaviour
+public class ShipController : Brain
 {
     public static int dnaLength = 300;
     public bool winner = false;
@@ -36,7 +36,7 @@ public class ShipController : MonoBehaviour
         get { return (float) (dna.genes[dnaLength + 1] / (turnAngleLimit/maxFrameLimit)) + 1; }
     }
 
-    public void Init () {
+    public override void Init () {
         ToggleBrain(false);
         goalsId = new List<int>();
         initPos = transform.position;
@@ -48,7 +48,7 @@ public class ShipController : MonoBehaviour
         winner = false;
     }
 
-    public void Init (DNA Elitedna, float fitness) {
+    public override void Init (DNA Elitedna, float fitness) {
         //DNA Sequence
         //0 - frente
         //1 - pulo
@@ -64,7 +64,7 @@ public class ShipController : MonoBehaviour
         winner = false;
     }
 
-    private void Die(){
+    public override void Die(){
         alive = false;
         fitness = CalculateFitness1();
         PopulationManagerShip.populationDead++;
@@ -76,7 +76,7 @@ public class ShipController : MonoBehaviour
         }
     }
 
-    public void ToggleBrain(bool b){
+    public override void ToggleBrain(bool b){
         alive = b;
         this.transform.GetComponent<SpriteRenderer>().enabled = b;
         if(b){
@@ -119,29 +119,20 @@ public class ShipController : MonoBehaviour
         frame = frame %  (int) frameLimit;
     }
 
-    public float CalculateFitness(){
-        switch (fitnessOpt)
-        {
-            case 1:
-                return CalculateFitness1();
-            case 2:
-                return CalculateFitness1();
-            case 3:
-                return CalculateFitness1();
-            default:
-                return CalculateFitness1();
-        }
-    }
-
-    public float CalculateFitness1(){
+    public override float CalculateFitness1(){
         return (goalsId.Count);
     }
 
-    public float CalculateFitness2(){
+    public override float CalculateFitness2(){
         return ((distanceWalked - timeAlive));
     }
 
-    public float CalculateFitness3(){
+    public override float CalculateFitness3(){
         return ((distanceWalked / timeAlive) + (10));
+    }
+
+    public override void SetColors()
+    {
+        throw new System.NotImplementedException();
     }
 }

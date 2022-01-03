@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Brain : MonoBehaviour {
+public abstract class Brain : MonoBehaviour {
     public SpriteRenderer sprite;
     public static int dnaLength = 6;
     public float timeAlive = 0.0f;
@@ -11,104 +11,20 @@ public class Brain : MonoBehaviour {
     public static int fitnessOpt = 3;
     public float timeLimit = 15f;
     public DNA dna;
-    public GameObject eyes;
-    bool alive = true;
+    public bool alive = true;
     public bool winner = false;
-    private Vector3 direction = new Vector3(0, .1f, 0);
-    int i = 0;
-    Vector3 initPos;
+    public int i = 0;
+    public Vector3 initPos;
 
-    public void Init () {
-        //DNA Sequence
-        //0 - frente
-        //1 - direita
-        //2 - tras
-        //3 - esquerda
-        ToggleBrain(false);
-        sprite.enabled = true;
-        initPos = transform.position;
-        dna = new DNA (dnaLength, 5);
-        timeAlive = 0.0f;
-        i = 1;
-        distanceWalked = 0.0f;
-    }
+    public abstract void Init ();
 
-    public void Init (DNA Elitedna) {
-        //DNA Sequence
-        //0 - frente
-        //1 - direita
-        //2 - tras
-        //3 - esquerda
-        ToggleBrain(false);
-        sprite.enabled = true;
-        initPos = transform.position;
-        dnaLength = 100;
-        dna = new DNA(Elitedna);
-        timeAlive = 0.0f;
-        i = 1;
-        distanceWalked = 0.0f;
-    }
+    public abstract void Init (DNA Elitedna, float fitness = 0f);
 
-    public void ToggleBrain(bool b){
-        alive = b;
-        this.transform.GetComponent<SpriteRenderer>().enabled = b;
-        if(b){
-            bornTime = PopulationManager.elapsed;
-        }
-    }
+    public abstract void ToggleBrain(bool b);
 
-    private void Die(){
-        alive = false;
-        PopulationManager.populationDead++;
-    }
+    public abstract void Die();
 
-    public void SetColors(){
-        Color color =  new Color(dna.r, dna.g, dna.b, 1);
-    }
-
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.tag == "dead") {
-            Die();
-            winner = false;
-        } else
-        if(other.gameObject.tag == "win") {
-            Die();
-            PopulationManager.noPenalty++;
-            sprite.enabled = false;
-            winner = true;
-        } else
-        if(other.gameObject.tag != "decision") return;
-        switch (dna.GetGene (i)) {
-            case 1:
-                direction = new Vector3(.1f, 0, 0);
-                sprite.flipX = false;
-                break;
-            case 2:
-                direction = new Vector3(0, .1f, 0);
-                break;
-            case 3:
-                direction = new Vector3(-0.1f, 0, 0);
-                sprite.flipX = true;
-                break;
-            case 4:
-                direction = new Vector3(0, -0.1f, 0);
-                break;
-        }
-        if(i >= dnaLength - 2){
-            i = 0;
-        }
-        i++;
-    }
-
-    private void FixedUpdate () {
-        if (!alive) return;
-        timeAlive = PopulationManager.elapsed - bornTime;
-        if(timeAlive >= timeLimit){
-            Die();
-        }
-        this.transform.Translate (direction);
-        distanceWalked = transform.position.z - initPos.z;
-    }
+    public abstract void SetColors();
 
     public float CalculateFitness(){
         switch (fitnessOpt)
@@ -124,19 +40,9 @@ public class Brain : MonoBehaviour {
         }
     }
 
-    public float CalculateFitness1(){
-        return (distanceWalked * timeAlive);
-    }
+    public abstract float CalculateFitness1();
 
-    public float CalculateFitness2(){
-        if(winner){
-            return (distanceWalked + timeAlive);
-        } else{
-            return (-(distanceWalked + timeAlive));
-        }
-    }
+    public abstract float CalculateFitness2();
 
-    public float CalculateFitness3(){
-        return ((distanceWalked / timeAlive) + (winner ? 8 : 0));
-    }
+    public abstract float CalculateFitness3();
 }
